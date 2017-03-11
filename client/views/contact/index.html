@@ -1,0 +1,96 @@
+<!--Google Map Area Start -->
+<div class="google-map-area">
+    <!--  Map Section -->
+    <div id="contacts" class="map-area">
+        <div id="googleMap" style="width:100%;height:451px;"></div>
+    </div>
+
+</div>
+<!--End of Google Map Area-->
+<!--Contact Area Strat-->
+<div class="contact-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-area-container">
+                    <div class="single-title">
+                        <h3>Thông tin liên hệ</h3>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    <div class="contact-address-container">
+                        <div class="contact-address-info">
+                            <div class="contact-icon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Địa chỉ</h4>
+                                <span>11st Floor New World Tower Miami</span>
+                            </div>
+                        </div>
+                        <div class="contact-address-info">
+                            <div class="contact-icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Điện thoại</h4>
+                                <span>(801) 2345 - 6789</span>
+                            </div>
+                        </div>
+                        <div class="contact-address-info">
+                            <div class="contact-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <span>admin@power-boosts.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="contact-form">
+                    <div class="single-title">
+                        <h3>Gữi thư</h3>
+                    </div>
+                    <div class="contact-form-container">
+                        <form action="https://devitems.com/tf/techedu-preview/techedu/mail.php" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" name="name" placeholder="Họ Tên">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" name="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <input type="text" name="subject" placeholder="Tiêu đề thư">
+                            <textarea name="message" class="yourmessage" placeholder="Nội dung thư"></textarea>
+                            <button type="submit" class="button-default button-yellow"><i class="fa fa-send"></i>Gửi ngay</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Contact Area-->
+
+<!--Google Map-->
+<script>
+    function initMap() {
+        var uluru = {lat: 16.064886, lng: 108.182562};
+        var map = new google.maps.Map(document.getElementById('googleMap'), {
+            zoom: 15,
+            center: uluru,
+            scrollwheel: false
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9TfuJQNDY-1h3g6VkbRtAuLs9k5emxPQ&callback=initMap">
+</script>
+<!--End google map-->

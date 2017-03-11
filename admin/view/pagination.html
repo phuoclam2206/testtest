@@ -1,0 +1,7 @@
+<ul class="pagination pull-right" ng-show="pagination.totalPage.length > 1">
+    <li ng-repeat="page in pagination.totalPage" ng-class="{true: 'active', false: ''}[page == pagination.currentPage]">
+        <a href="javascript:void(0)" ng-click="toPage(page)">
+            {{page}}
+        </a>
+    </li>
+</ul>

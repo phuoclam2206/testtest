@@ -1,0 +1,13 @@
+<div class="pagination-content">
+    <div class="pagination-button">
+        <ul class="pagination" ng-show="pagination.totalPage.length > 1">
+            <li ng-repeat="page in pagination.totalPage" ng-class="{true: 'current', false: ''}[page == pagination.currentPage]">
+                <a href="javascript:void(0)" ng-click="toPage(page)">
+                    {{page}}
+                </a>
+            </li>
+            <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
+        </ul>
+        <span>Page:</span>
+    </div>
+</div>
