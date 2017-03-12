@@ -1,0 +1,1 @@
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "tova.sessions", "name" : "_id_" }, { "v" : 1, "key" : { "user_id" : 1 }, "unique" : true, "ns" : "tova.sessions", "name" : "user_id_1", "background" : true } ] }
