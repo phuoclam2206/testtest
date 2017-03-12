@@ -57,6 +57,6 @@ app.get('/asian/japan/detail/1', function (req,res) {
     res.sendfile('server/views/client/asian/japan/detail.html');
 });
 
-app.listen('3000', function () {
+app.listen('80', function () {
    console.log("server start ");
 });
