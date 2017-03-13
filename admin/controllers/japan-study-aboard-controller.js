@@ -5,7 +5,7 @@ angular.module('japanStudyAboardController', ['japanServices', 'paginationUtil',
     .controller('japanStudyAboardCtr', function (JpPost, Tinymce, $scope, $location) {
         $scope.title = 'Tao bai viet';
         $scope.createPost = function (post) {
-            JpPost.create(post).then(function (response) {
+            JpPost.create(post, $scope.file).then(function (response) {
                 $location.path("/dashboard/japan-study-board")
             });
         };

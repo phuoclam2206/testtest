@@ -27,7 +27,7 @@
                 </div>
                 <div class="x_content">
                     <br/>
-                    <form ng-submit="createPost(post)" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form ng-submit="createPost(post)" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype = "multipart/form-data">
 
                         <input type="text" ng-value="post._id" hidden ng-model="post._id">
                         <div class="form-group">
@@ -52,6 +52,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Ảnh đại diện <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="file" file="file" required id="image" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sortContent">Miêu tả ngắn <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea ng-model="post.sortContent" id="sortContent"></textarea>
+                            </div>
+                        </div>
+
                         <label class="control-label" for="content">Nội dung <span
                                 class="required">*</span>
                         </label>

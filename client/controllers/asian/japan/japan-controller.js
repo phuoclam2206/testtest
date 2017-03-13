@@ -28,7 +28,15 @@ angular.module('japanController',['japanServices', 'paginationUtil'])
             });
         };
     })
-    .controller('japanDetailCtr', function ($scope, $stateParams) {
-        console.log($stateParams.id);
-        $scope.id = $stateParams.id;
+    .controller('japanDetailCtr', function ($scope, $stateParams, JpPost, $sce) {
+        var convertToDate = function (data) {
+            return _.assign(data, {
+                created_date: new Date(1000 * data.created_date).toDateString(),
+                content: $sce.trustAsHtml(data.content)
+            });
+        };
+
+        JpPost.fetchDetail($stateParams.id).then(function (response) {
+            $scope.post = convertToDate(response.data);
+        });
     });

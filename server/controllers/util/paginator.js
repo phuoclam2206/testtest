@@ -23,7 +23,7 @@ paginator.index = function (req, select, populate) {
 
     var option = {
         select: select,
-        sort: req.query.sortBy,
+        sort: { '_id': 'desc' },
         populate: populate,
         offset: offset,
         limit: req.query.limit

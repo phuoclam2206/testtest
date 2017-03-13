@@ -29,35 +29,33 @@ module.exports.login = function (req, res) {
                 expiresIn: '24h'
             });
             var session = new Session({
-               user_id: user._id,
+                user_id: user._id,
                 token: token
             });
             session.save(function (err) {
                 if (err) throw err;
-                res.json({
-                    success: true,
-                    message: 'success',
-                    token: token
-                })
+                req.flash('token', token);
+                res.redirect('/dashboard');
             });
         }
     })
 };
 
 module.exports.checkLogin = function (req, res, next) {
-    var token = req.body.token || req.body.query || req.headers['x-access-token'];
-    if (token) {
-        jwt.verify(token, secret, function (err, decoded) {
-            if (err) {
-                res.redirect('/login');
-            } else {
-                req.decoded = decoded;
-                next();
-            }
-        })
-    } else {
-        res.redirect('/login');
-    }
+    // var token = req.body.token || req.body.query || req.headers['x-access-token'] || req.flash('token');
+    // if (token) {
+    //     jwt.verify(token, secret, function (err, decoded) {
+    //         if (err) {
+    //             res.redirect('/login');
+    //         } else {
+    //             req.decoded = decoded;
+    //             next();
+    //         }
+    //     })
+    // } else {
+    //     res.redirect('/login');
+    // }
+    next();
 };
 
 module.exports.logout = function (req, res, next) {

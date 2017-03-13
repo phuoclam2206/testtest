@@ -1,11 +1,16 @@
 /**
  * Created by phuoclam on 31/12/2016.
  */
-var express = require("express");
-var mongoose = require("mongoose");
-var bodyParser = require("body-parser");
-var jwt = require('jsonwebtoken');
-
+var express     = require("express");
+var mongoose    = require("mongoose");
+var bodyParser  = require("body-parser");
+var jwt         = require('jsonwebtoken');
+var cookieParser = require('cookie-parser');
+var session      = require('cookie-session');
+var flash       = require('req-flash');
+var fs          = require('fs');
+var multer      = require('multer');
+var uploadImage = multer({ dest : 'public/images/'});
 
 var authencationController = require("./server/controllers/authencation-controller");
 var japanController = require("./server/controllers/japan-controller");
@@ -16,6 +21,22 @@ mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/tova");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser('notsosecretkey'));
+app.use(session({secret: 'notsosecretkey123'}));
+app.use(flash());
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+});
+
+// Set engine template
+app.engine('.html', require('ejs').__express);
+app.set('views', __dirname + '/server/views');
+app.set('view engine', 'html');
+// end set engine template
+
 
 app.use('/admin', express.static(__dirname + '/admin'));
 app.use('/client', express.static(__dirname + '/client'));
@@ -23,11 +44,11 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/dashboard', authencationController.checkLogin, function (req,res) {
-    res.sendfile('index.html');
+    res.render('index', {token: req.flash('token')});
 });
 
 app.get('/login', function (req, res) {
-   res.sendfile('server/views/login.html');
+   res.render('login');
 });
 
 // Authencation
@@ -36,9 +57,9 @@ app.post('/api/dashboard/user/login', authencationController.login);
 
 // Japan
 app.get('/api/dashboard/japan-study-aboard', authencationController.checkLogin, japanController.fetch);
-app.post('/api/dashboard/japan-study-aboard/create', authencationController.checkLogin, japanController.create);
+app.post('/api/dashboard/japan-study-aboard/create', authencationController.checkLogin, uploadImage.any(), japanController.create);
 app.post('/api/dashboard/japan-study-aboard/delete/:id', authencationController.checkLogin, japanController.delete);
-app.post('/api/dashboard/japan-study-aboard/update', authencationController.checkLogin, japanController.update);
+app.post('/api/dashboard/japan-study-aboard/update', authencationController.checkLogin, uploadImage.any(), japanController.update);
 
 
 // Upload Images
@@ -53,10 +74,8 @@ app.get('/', function (req,res) {
 
 app.get('/api/asian/japan', clientJapanController.fetch);
 
-app.get('/asian/japan/detail/1', function (req,res) {
-    res.sendfile('server/views/client/asian/japan/detail.html');
-});
+app.get('/api/asian/japan/detail/:id', clientJapanController.fetchDetail);
 
-app.listen('80', function () {
+app.listen('3000', function () {
    console.log("server start ");
 });

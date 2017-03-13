@@ -4,7 +4,7 @@
 
 angular.module('tovaApp', ['appRoutes', 'signupController', 'loginController', 'authServices', 'mainController',
     'emailConfirmController', 'japanStudyAboardController', 'koreanStudyAboardController', 'ui.tinymce', 'japanServices',
-    'paginationUtil', 'paginationDirective', 'tinymceOptionService'
+    'paginationUtil', 'paginationDirective', 'tinymceOptionService', 'fileDirective'
     ])
     .constant('_', window._)
     .config(function ($httpProvider) {

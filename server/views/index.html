@@ -281,7 +281,13 @@
         <!-- /footer content -->
     </div>
 </div>
+<script type="text/javascript">
+    var token = '<%= token %>';
+    if (token) {
+        localStorage.setItem('token', token);
+    }
 
+</script>
 
 <!--Library-->
 <script src="node_modules/angular/angular.js"></script>
@@ -311,6 +317,7 @@
 
 <!--Directives-->
 <script src="admin/directives/paginatorDirective.js"></script>
+<script src="admin/directives/fileDirective.js"></script>
 
 
 
@@ -320,6 +327,7 @@
 <script src="public/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="public/build/js/custom.min.js"></script>
+
 </body>
 </html>
 

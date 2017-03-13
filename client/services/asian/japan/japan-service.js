@@ -10,5 +10,10 @@ angular.module('japanServices', [])
             return $http.get('/api/asian/japan?limit=' + limit + '&page=' + page);
         };
 
+        // JpPost.fetchDetail
+        jpPostFactory.fetchDetail = function (id) {
+            return $http.get('/api/asian/japan/detail/' + id);
+        };
+
         return jpPostFactory;
     });
