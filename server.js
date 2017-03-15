@@ -14,7 +14,9 @@ var uploadImage = multer({ dest : 'public/images/'});
 
 var authencationController = require("./server/controllers/authencation-controller");
 var japanController = require("./server/controllers/japan-controller");
+var koreanController = require("./server/controllers/korean-controller");
 var clientJapanController = require("./server/controllers/client/asian/japan/japan-controller");
+var clientKoreanController = require("./server/controllers/client/asian/korean/korean-controller");
 
 var app = express();
 mongoose.Promise = global.Promise;
@@ -62,6 +64,13 @@ app.post('/api/dashboard/japan-study-aboard/delete/:id', authencationController.
 app.post('/api/dashboard/japan-study-aboard/update', authencationController.checkLogin, uploadImage.any(), japanController.update);
 
 
+// Korean
+app.get('/api/dashboard/korean-study-aboard', authencationController.checkLogin, koreanController.fetch);
+app.post('/api/dashboard/korean-study-aboard/create', authencationController.checkLogin, uploadImage.any(), koreanController.create);
+app.post('/api/dashboard/korean-study-aboard/delete/:id', authencationController.checkLogin, koreanController.delete);
+app.post('/api/dashboard/korean-study-aboard/update', authencationController.checkLogin, uploadImage.any(), koreanController.update);
+
+
 // Upload Images
 require('./server/controllers/post-image-controller')(app);
 
@@ -75,6 +84,10 @@ app.get('/', function (req,res) {
 app.get('/api/asian/japan', clientJapanController.fetch);
 
 app.get('/api/asian/japan/detail/:id', clientJapanController.fetchDetail);
+
+app.get('/api/asian/korean', clientKoreanController.fetch);
+
+app.get('/api/asian/korean/detail/:id', clientKoreanController.fetchDetail);
 
 app.listen('3000', function () {
    console.log("server start ");

@@ -35,7 +35,14 @@ angular.module("appRoutes", ['ui.router'])
             .state('korean', {
                 url: '/korean',
                 templateUrl: 'client/views/asian/korean/index.html',
-                controller: 'koreanCtr'
+                controller: 'koreanCtr',
+                resolve: {
+                    postKoreanStudyAboard: function (KrPost) {
+                        return KrPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
             })
             .state('koreanDetail', {
                 url: '/korean/detail/:id',

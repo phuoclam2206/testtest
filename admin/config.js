@@ -45,21 +45,29 @@ angular.module("appRoutes", ['ui.router'])
                 controller: 'updateJapanStudyAboardCtr'
             })
 
-
-
-
-
             // Route Korean study aboard
             .state('koreanStudyAboard', {
                 url: '/dashboard/korean-study-board',
                 templateUrl: 'admin/view/korean-study-aboard/study-aboard.html',
-                controller: 'koreanStudyAboardCtr',
+                controller: 'fetchKoreanStudyAboardCtr',
+                resolve: {
+                    postKoreanStudyAboard: function (KrPost) {
+                        return KrPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
             })
             .state('koreanStudyAboardCreated', {
                 url: '/dashboard/korean-study-board/create',
                 templateUrl: 'admin/view/korean-study-aboard/created-study-aboard.html',
                 controller: 'koreanStudyAboardCtr'
-            });
+            })
+            .state('koreanStudyAboardUpdate', {
+                url: '/dashboard/korean-study-board/update',
+                templateUrl: 'admin/view/korean-study-aboard/created-study-aboard.html',
+                controller: 'koreanJapanStudyAboardCtr'
+            })
         // $locationProvider.html5Mode({
         //     enabled: true,
         //     requireBase: false

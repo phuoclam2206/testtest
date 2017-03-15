@@ -12,5 +12,6 @@ angular.module('tova', [
     'aboutController',
     'paginationUtil',
     'paginationDirective',
-    'japanServices'])
+    'japanServices',
+    'koreanServices'])
     .constant('_', window._);
