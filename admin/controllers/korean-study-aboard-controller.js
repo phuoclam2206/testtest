@@ -3,7 +3,6 @@
  */
 angular.module('koreanStudyAboardController', ['koreanServices', 'paginationUtil', 'tinymceOptionService'])
     .controller('koreanStudyAboardCtr', function (KrPost, Tinymce, $scope, $location) {
-        $scope.title = 'Tao bai viet';
         $scope.createPost = function (post) {
             KrPost.create(post, $scope.file).then(function (response) {
                 $location.path("/dashboard/korean-study-board")
@@ -57,14 +56,16 @@ angular.module('koreanStudyAboardController', ['koreanServices', 'paginationUtil
 
     })
     .controller('updateKoreanStudyAboardCtr', function (KrPost, Tinymce, $scope, $location) {
-        $scope.title = 'Chinh sua bai viet';
         $scope.tinymceOptions = Tinymce;
         $scope.post = KrPost.getPost();
-        $scope.createPost = function (post) {
+        $scope.updatePost = function (post) {
             KrPost.update(post).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/korean-study-board")
                 }
             });
+        };
+        $scope.cancel = function () {
+            $location.path("/dashboard/korean-study-board");
         };
     });

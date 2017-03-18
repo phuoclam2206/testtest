@@ -3,7 +3,6 @@
  */
 angular.module('japanStudyAboardController', ['japanServices', 'paginationUtil', 'tinymceOptionService'])
     .controller('japanStudyAboardCtr', function (JpPost, Tinymce, $scope, $location) {
-        $scope.title = 'Tao bai viet';
         $scope.createPost = function (post) {
             JpPost.create(post, $scope.file).then(function (response) {
                 $location.path("/dashboard/japan-study-board")
@@ -57,14 +56,17 @@ angular.module('japanStudyAboardController', ['japanServices', 'paginationUtil',
 
     })
     .controller('updateJapanStudyAboardCtr', function (JpPost, Tinymce, $scope, $location) {
-        $scope.title = 'Chinh sua bai viet';
         $scope.tinymceOptions = Tinymce;
         $scope.post = JpPost.getPost();
-        $scope.createPost = function (post) {
+        $scope.updatePost = function (post) {
             JpPost.update(post).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/japan-study-board")
                 }
             });
         };
+        $scope.cancel = function () {
+            $location.path("/dashboard/japan-study-board");
+        };
+
     });

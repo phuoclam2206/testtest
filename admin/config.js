@@ -41,7 +41,7 @@ angular.module("appRoutes", ['ui.router'])
             })
             .state('japanStudyAboardUpdate', {
                 url: '/dashboard/japan-study-board/update',
-                templateUrl: 'admin/view/japan-study-aboard/created-study-aboard.html',
+                templateUrl: 'admin/view/japan-study-aboard/update-study-aboard.html',
                 controller: 'updateJapanStudyAboardCtr'
             })
 
@@ -65,8 +65,8 @@ angular.module("appRoutes", ['ui.router'])
             })
             .state('koreanStudyAboardUpdate', {
                 url: '/dashboard/korean-study-board/update',
-                templateUrl: 'admin/view/korean-study-aboard/created-study-aboard.html',
-                controller: 'koreanJapanStudyAboardCtr'
+                templateUrl: 'admin/view/korean-study-aboard/update-study-aboard.html',
+                controller: 'updateKoreanStudyAboardCtr'
             })
         // $locationProvider.html5Mode({
         //     enabled: true,

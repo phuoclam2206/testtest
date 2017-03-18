@@ -14,14 +14,14 @@ var japanController = {
             req.files.forEach(function (file) {
                 var filename = "public/images/" + (new Date).valueOf() + "-" + file.originalname;
                 fs.rename(file.path, filename, function (err) {
-                    if(err) throw err;
+                    if(err) next(err);
                     var japanStudyAboardPost = new JapanStudyAboardPost({
                         title: req.body.title,
                         content: req.body.content,
                         is_active: req.body.isActive,
                         created_date: Math.round(new Date().getTime()/1000),
                         image: filename,
-                        sort_content: req.body.sortContent
+                        sort_content: req.body.sort_content
                     });
                     japanStudyAboardPost.save();
                     res.json(japanStudyAboardPost);
@@ -32,7 +32,7 @@ var japanController = {
     },
 
     fetch: function (req, res) {
-        var select = '_id title created_date is_active content';
+        var select = '_id title created_date is_active content sort_content';
         paging = paginatorUtil.index(req, select, null);
         JapanStudyAboardPost.paginate(paging.query, paging.option, function (err, result) {
             return res.json(result);
@@ -41,37 +41,27 @@ var japanController = {
 
     delete: function (req, res) {
         JapanStudyAboardPost.remove({_id: req.params.id}).exec(function (err) {
-            if (err) throw err;
+            if (err) next(err);
             return res.json({status: 200});
         })
     },
 
-    update: function (req, res) {
-        var filename = '';
-        if (req.files) {
-            req.files.forEach(function (file) {
-                filename += "public/images/" + (new Date).valueOf() + "-" + file.originalname;
-                fs.rename(file.path, filename, function (err) {
-                    if(err) throw err;
-                    JapanStudyAboardPost.update(
-                        {_id: req.body._id},
-                        {
-                            $set: {
-                                title: req.body.title,
-                                is_active: req.body.isActive,
-                                content: req.body.content,
-                                image: filename,
-                                sort_content: req.body.sortContent
-                            }
-                        },
-                        {upsert: true},
-                        function (err, doc) {
-                            if (err) throw err;
-                            return res.json(doc);
-                        });
-                })
-            })
-        }
+    update: function (req, res, next) {
+        JapanStudyAboardPost.update(
+            {_id: req.body._id},
+            {
+                $set: {
+                    title: req.body.title,
+                    is_active: req.body.isActive,
+                    content: req.body.content,
+                    sort_content: req.body.sort_content
+                }
+            },
+            {upsert: true},
+            function (err, doc) {
+                if (err) next(err);
+                return res.json(doc);
+            });
     }
 };
 module.exports = japanController;

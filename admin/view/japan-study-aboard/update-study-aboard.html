@@ -4,8 +4,8 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Tạo bài viết
-                        <small> du hoc Hàn Quốc</small>
+                    <h2> Chỉnh sữa bài viết
+                        <small> du hoc Nhật Bản</small>
                     </h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="x_content">
                     <br/>
-                    <form ng-submit="createPost(post)" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype = "multipart/form-data">
+                    <form ng-submit="updatePost(post)" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype = "multipart/form-data">
 
                         <input type="text" ng-value="post._id" hidden ng-model="post._id">
                         <div class="form-group">
@@ -52,33 +52,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Ảnh đại diện <span
-                                    class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="file" file="file" required id="image" />
-                            </div>
-                        </div>
 
                         <label class="control-label" for="sort_content">Miêu tả ngắn <span
                                 class="required">*</span>
                         </label>
+
                         <textarea style="height: 100px" ui-tinymce="tinymceOptions" ng-model="post.sort_content" id="sort_content"></textarea>
+
 
                         <label class="control-label" for="content">Nội dung <span
                                 class="required">*</span>
                         </label>
+
                         <textarea style="height: 500px" ui-tinymce="tinymceOptions" ng-model="post.content" id="content"></textarea>
 
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                 <button type="submit" class="btn btn-success">Submit</button>
-                                <button type="submit" class="btn btn-primary">Cancel</button>
+                                <button type="button" class="btn btn-primary" ng-click="cancel()">Cancel</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -86,3 +80,11 @@
     </div>
 
 </div>
+
+
+
+
+
+
+
+
