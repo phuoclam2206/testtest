@@ -43,6 +43,7 @@ app.set('view engine', 'html');
 app.use('/admin', express.static(__dirname + '/admin'));
 app.use('/client', express.static(__dirname + '/client'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use('/public', express.static(__dirname + '/public'));
 
 app.get('/dashboard', authencationController.checkLogin, function (req,res) {
