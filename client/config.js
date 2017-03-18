@@ -54,7 +54,14 @@ angular.module("appRoutes", ['ui.router'])
             .state('germany', {
                 url: '/germany',
                 templateUrl: 'client/views/euro/germany/index.html',
-                controller: 'germanyCtr'
+                controller: 'germanyCtr',
+                resolve: {
+                    postGermanyStudyAboard: function (GrPost) {
+                        return GrPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
             })
             .state('germanyDetail', {
                 url: '/germany/detail/:id',

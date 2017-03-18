@@ -68,6 +68,31 @@ angular.module("appRoutes", ['ui.router'])
                 templateUrl: 'admin/view/korean-study-aboard/update-study-aboard.html',
                 controller: 'updateKoreanStudyAboardCtr'
             })
+
+
+            // Route Germany study aboard
+            .state('germanyStudyAboard', {
+                url: '/dashboard/germany-study-board',
+                templateUrl: 'admin/view/germany-study-aboard/study-aboard.html',
+                controller: 'fetchGermanyStudyAboardCtr',
+                resolve: {
+                    postGermanyStudyAboard: function (GrPost) {
+                        return GrPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('germanyStudyAboardCreated', {
+                url: '/dashboard/germany-study-board/create',
+                templateUrl: 'admin/view/germany-study-aboard/created-study-aboard.html',
+                controller: 'germanyStudyAboardCtr'
+            })
+            .state('germanyStudyAboardUpdate', {
+                url: '/dashboard/germany-study-board/update',
+                templateUrl: 'admin/view/germany-study-aboard/update-study-aboard.html',
+                controller: 'updateGermanyStudyAboardCtr'
+            });
         // $locationProvider.html5Mode({
         //     enabled: true,
         //     requireBase: false

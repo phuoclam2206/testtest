@@ -6,7 +6,8 @@ angular.module('japanController',['japanServices', 'paginationUtil'])
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
-                content: $sce.trustAsHtml(data.content)
+                content: $sce.trustAsHtml(data.content),
+                sort_content: $sce.trustAsHtml(data.sort_content)
             });
         };
 

@@ -2,18 +2,19 @@
  * Created by phuoclam on 05/01/2017.
  */
 
-var KoreanStudyAboardPost = require('../datasets/koreanStudyAboardPost');
+var GermanyStudyAboardPost = require('../datasets/germanyStudyAboardPost');
 var paginatorUtil = require('../controllers/util/paginator');
 var fs = require("fs");
 
-var koreanController = {
+
+var germanyController = {
     create: function (req, res) {
         if (req.files) {
             req.files.forEach(function (file) {
                 var filename = "public/images/" + (new Date).valueOf() + "-" + file.originalname;
                 fs.rename(file.path, filename, function (err) {
                     if(err) next(err);
-                    var koreanStudyAboardPost = new KoreanStudyAboardPost({
+                    var germanyStudyAboardPost = new GermanyStudyAboardPost({
                         title: req.body.title,
                         content: req.body.content,
                         is_active: req.body.isActive,
@@ -21,8 +22,8 @@ var koreanController = {
                         image: filename,
                         sort_content: req.body.sort_content
                     });
-                    koreanStudyAboardPost.save();
-                    res.json(koreanStudyAboardPost);
+                    germanyStudyAboardPost.save();
+                    res.json(germanyStudyAboardPost);
                 })
             })
         }
@@ -30,22 +31,22 @@ var koreanController = {
     },
 
     fetch: function (req, res) {
-        var select = '_id title created_date is_active content',
+        var select = '_id title created_date is_active content sort_content';
         paging = paginatorUtil.index(req, select, null);
-        KoreanStudyAboardPost.paginate(paging.query, paging.option, function (err, result) {
+        GermanyStudyAboardPost.paginate(paging.query, paging.option, function (err, result) {
             return res.json(result);
         });
     },
 
     delete: function (req, res) {
-        KoreanStudyAboardPost.remove({_id: req.params.id}).exec(function (err) {
+        GermanyStudyAboardPost.remove({_id: req.params.id}).exec(function (err) {
             if (err) next(err);
             return res.json({status: 200});
         })
     },
 
-    update: function (req, res) {
-        KoreanStudyAboardPost.update(
+    update: function (req, res, next) {
+        GermanyStudyAboardPost.update(
             {_id: req.body._id},
             {
                 $set: {
@@ -62,5 +63,5 @@ var koreanController = {
             });
     }
 };
-module.exports = koreanController;
+module.exports = germanyController;
 

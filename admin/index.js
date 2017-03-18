@@ -9,15 +9,18 @@ angular.module('tovaApp', [
     'authServices',
     'mainController',
     'emailConfirmController',
-    'japanStudyAboardController',
-    'koreanStudyAboardController',
     'ui.tinymce',
-    'japanServices',
     'paginationUtil',
     'paginationDirective',
     'tinymceOptionService',
     'fileDirective',
-    'koreanServices'
+    'japanStudyAboardController',
+    'koreanStudyAboardController',
+    'germanyStudyAboardController',
+    'japanServices',
+    'koreanServices',
+    'germanyServices',
+
     ])
     .constant('_', window._)
     .config(function ($httpProvider) {

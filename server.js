@@ -15,8 +15,10 @@ var uploadImage = multer({ dest : 'public/images/'});
 var authencationController = require("./server/controllers/authencation-controller");
 var japanController = require("./server/controllers/japan-controller");
 var koreanController = require("./server/controllers/korean-controller");
+var germanyController = require("./server/controllers/germany-controller");
 var clientJapanController = require("./server/controllers/client/asian/japan/japan-controller");
 var clientKoreanController = require("./server/controllers/client/asian/korean/korean-controller");
+var clientGermanyController = require("./server/controllers/client/euro/germany/germany-controller");
 
 var app = express();
 mongoose.Promise = global.Promise;
@@ -71,6 +73,12 @@ app.post('/api/dashboard/korean-study-aboard/create', authencationController.che
 app.post('/api/dashboard/korean-study-aboard/delete/:id', authencationController.checkLogin, koreanController.delete);
 app.post('/api/dashboard/korean-study-aboard/update', authencationController.checkLogin, uploadImage.any(), koreanController.update);
 
+// Germany
+app.get('/api/dashboard/germany-study-aboard', authencationController.checkLogin, germanyController.fetch);
+app.post('/api/dashboard/germany-study-aboard/create', authencationController.checkLogin, uploadImage.any(), germanyController.create);
+app.post('/api/dashboard/germany-study-aboard/delete/:id', authencationController.checkLogin, germanyController.delete);
+app.post('/api/dashboard/germany-study-aboard/update', authencationController.checkLogin, uploadImage.any(), germanyController.update);
+
 
 // Upload Images
 require('./server/controllers/post-image-controller')(app);
@@ -89,6 +97,10 @@ app.get('/api/asian/japan/detail/:id', clientJapanController.fetchDetail);
 app.get('/api/asian/korean', clientKoreanController.fetch);
 
 app.get('/api/asian/korean/detail/:id', clientKoreanController.fetchDetail);
+
+app.get('/api/euro/germany', clientGermanyController.fetch);
+
+app.get('/api/euro/germany/detail/:id', clientGermanyController.fetchDetail);
 
 app.listen('3000', function () {
    console.log("server start ");
