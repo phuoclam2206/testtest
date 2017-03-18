@@ -69,7 +69,6 @@ angular.module("appRoutes", ['ui.router'])
                 controller: 'updateKoreanStudyAboardCtr'
             })
 
-
             // Route Germany study aboard
             .state('germanyStudyAboard', {
                 url: '/dashboard/germany-study-board',
@@ -92,6 +91,78 @@ angular.module("appRoutes", ['ui.router'])
                 url: '/dashboard/germany-study-board/update',
                 templateUrl: 'admin/view/germany-study-aboard/update-study-aboard.html',
                 controller: 'updateGermanyStudyAboardCtr'
+            })
+
+            // Route American study aboard
+            .state('americanStudyAboard', {
+                url: '/dashboard/american-study-board',
+                templateUrl: 'admin/view/american-study-aboard/study-aboard.html',
+                controller: 'fetchAmericanStudyAboardCtr',
+                resolve: {
+                    postAmericanStudyAboard: function (ArPost) {
+                        return ArPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('americanStudyAboardCreated', {
+                url: '/dashboard/american-study-board/create',
+                templateUrl: 'admin/view/american-study-aboard/created-study-aboard.html',
+                controller: 'americanStudyAboardCtr'
+            })
+            .state('americanStudyAboardUpdate', {
+                url: '/dashboard/american-study-board/update',
+                templateUrl: 'admin/view/american-study-aboard/update-study-aboard.html',
+                controller: 'updateAmericanStudyAboardCtr'
+            })
+
+            // Route Australia study aboard
+            .state('australiaStudyAboard', {
+                url: '/dashboard/australia-study-board',
+                templateUrl: 'admin/view/australia-study-aboard/study-aboard.html',
+                controller: 'fetchAustraliaStudyAboardCtr',
+                resolve: {
+                    postAustraliaStudyAboard: function (AuPost) {
+                        return AuPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('australiaStudyAboardCreated', {
+                url: '/dashboard/australia-study-board/create',
+                templateUrl: 'admin/view/australia-study-aboard/created-study-aboard.html',
+                controller: 'australiaStudyAboardCtr'
+            })
+            .state('australiaStudyAboardUpdate', {
+                url: '/dashboard/australia-study-board/update',
+                templateUrl: 'admin/view/australia-study-aboard/update-study-aboard.html',
+                controller: 'updateAustraliaStudyAboardCtr'
+            })
+
+            // Route Canada study aboard
+            .state('canadaStudyAboard', {
+                url: '/dashboard/canada-study-board',
+                templateUrl: 'admin/view/canada-study-aboard/study-aboard.html',
+                controller: 'fetchCanadaStudyAboardCtr',
+                resolve: {
+                    postCanadaStudyAboard: function (CaPost) {
+                        return CaPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('canadaStudyAboardCreated', {
+                url: '/dashboard/canada-study-board/create',
+                templateUrl: 'admin/view/canada-study-aboard/created-study-aboard.html',
+                controller: 'canadaStudyAboardCtr'
+            })
+            .state('canadaStudyAboardUpdate', {
+                url: '/dashboard/canada-study-board/update',
+                templateUrl: 'admin/view/canada-study-aboard/update-study-aboard.html',
+                controller: 'updateCanadaStudyAboardCtr'
             });
         // $locationProvider.html5Mode({
         //     enabled: true,

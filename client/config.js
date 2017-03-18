@@ -69,6 +69,63 @@ angular.module("appRoutes", ['ui.router'])
                 controller: 'germanyDetailCtr'
             })
 
+            // Route American
+            .state('american', {
+                url: '/american',
+                templateUrl: 'client/views/euro/american/index.html',
+                controller: 'americanCtr',
+                resolve: {
+                    postAmericanStudyAboard: function (ArPost) {
+                        return ArPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('americanDetail', {
+                url: '/american/detail/:id',
+                templateUrl: 'client/views/euro/american/detail.html',
+                controller: 'americanDetailCtr'
+            })
+
+            // Route Australia
+            .state('australia', {
+                url: '/australia',
+                templateUrl: 'client/views/euro/australia/index.html',
+                controller: 'australiaCtr',
+                resolve: {
+                    postAustraliaStudyAboard: function (AuPost) {
+                        return AuPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('australiaDetail', {
+                url: '/australia/detail/:id',
+                templateUrl: 'client/views/euro/australia/detail.html',
+                controller: 'australiaDetailCtr'
+            })
+
+            // Route Canada
+            .state('canada', {
+                url: '/canada',
+                templateUrl: 'client/views/euro/canada/index.html',
+                controller: 'canadaCtr',
+                resolve: {
+                    postCanadaStudyAboard: function (CaPost) {
+                        return CaPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('canadaDetail', {
+                url: '/canada/detail/:id',
+                templateUrl: 'client/views/euro/canada/detail.html',
+                controller: 'canadaDetailCtr'
+            })
+
             // Route Contact
             .state('contact', {
                 url: '/contact',

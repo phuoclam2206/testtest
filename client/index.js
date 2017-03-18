@@ -8,10 +8,19 @@ angular.module('tova', [
     'japanController',
     'koreanController',
     'germanyController',
+    'americanController',
+    'australiaController',
+    'canadaController',
     'contactController',
     'aboutController',
     'paginationUtil',
     'paginationDirective',
     'japanServices',
-    'koreanServices'])
+    'koreanServices',
+    'germanyServices',
+    'americanServices',
+    'australiaServices',
+    'canadaServices',
+
+    ])
     .constant('_', window._);
