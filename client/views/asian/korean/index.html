@@ -15,7 +15,7 @@
                                 <div class="class-information">
                                     <span>Date: {{post.created_date}}</span>
                                 </div>
-                                <p>{{post.sort_content}}</p>
+                                <p ng-bind-html="post.sort_content"></p>
                                 <a ui-sref="koreanDetail({id:post._id})" class="button-default">Read More <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
