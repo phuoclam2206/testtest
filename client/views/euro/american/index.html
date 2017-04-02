@@ -11,12 +11,12 @@
                         </div>
                         <div class="col-lg-7 col-md-6 col-sm-6">
                             <div class="class-list-text">
-                                <h3><a ui-sref="japanDetail({id:post._id})">{{post.title}}</a></h3>
+                                <h3><a ui-sref="americanDetail({id:post._id})">{{post.title}}</a></h3>
                                 <div class="class-information">
                                     <span>Date: {{post.created_date}}</span>
                                 </div>
                                 <p ng-bind-html="post.sort_content"></p>
-                                <a ui-sref="japanDetail({id:post._id})" class="button-default" style="margin-bottom: 15px">Read More <i class="fa fa-angle-right"></i></a>
+                                <a ui-sref="americanDetail({id:post._id})" class="button-default" style="margin-bottom: 15px">Read More <i class="fa fa-angle-right"></i></a>
                                 <div class="fb-like" data-href="http://duhoctova.com/#!/japan/detail/{{post._id}}"
                                      data-layout="standard"
                                      data-action="like"
