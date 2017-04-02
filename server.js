@@ -19,6 +19,7 @@ var germanyController = require("./server/controllers/germany-controller");
 var americanController = require("./server/controllers/american-controller");
 var australiaController = require("./server/controllers/australia-controller");
 var canadaController = require("./server/controllers/canada-controller");
+var contactController = require("./server/controllers/contact-controller");
 
 var clientJapanController = require("./server/controllers/client/asian/japan/japan-controller");
 var clientKoreanController = require("./server/controllers/client/asian/korean/korean-controller");
@@ -26,6 +27,7 @@ var clientGermanyController = require("./server/controllers/client/euro/germany/
 var clientAmericanController = require("./server/controllers/client/euro/american/american-controller");
 var clientAustraliaController = require("./server/controllers/client/euro/australia/australia-controller");
 var clientCanadaController = require("./server/controllers/client/euro/canada/canada-controller");
+var clientContact = require("./server/controllers/client/contact/contact-controller");
 
 var app = express();
 mongoose.Promise = global.Promise;
@@ -105,6 +107,14 @@ app.post('/api/dashboard/canada-study-aboard/delete/:id', authencationController
 app.post('/api/dashboard/canada-study-aboard/update', authencationController.checkLogin, uploadImage.any(), canadaController.update);
 
 
+// Contact
+app.get('/api/dashboard/contact/email/fetch', authencationController.checkLogin, contactController.fetchEmail);
+app.get('/api/dashboard/contact/email/fetch/:id', authencationController.checkLogin, contactController.fetchDetailEmail);
+app.post('/api/dashboard/contact/email/delete/:id', authencationController.checkLogin, contactController.deleteEmail);
+app.post('/api/dashboard/contact/email/reply/:id', authencationController.checkLogin, contactController.replyEmail);
+app.get('/api/dashboard/contact/email/config', authencationController.checkLogin, contactController.fetchConfig);
+app.post('/api/dashboard/contact/email/config', authencationController.checkLogin, contactController.updateConfig);
+
 // Upload Images
 require('./server/controllers/post-image-controller')(app);
 
@@ -139,6 +149,10 @@ app.get('/api/euro/australia/detail/:id', clientAustraliaController.fetchDetail)
 app.get('/api/euro/canada', clientCanadaController.fetch);
 app.get('/api/euro/canada/detail/:id', clientCanadaController.fetchDetail);
 
-app.listen('3000', function () {
+// Client Contact
+app.post('/api/contact/send_mail', clientContact.saveMail);
+
+
+app.listen('80', function () {
    console.log("server start ");
 });

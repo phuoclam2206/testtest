@@ -21,6 +21,6 @@ angular.module('tova', [
     'americanServices',
     'australiaServices',
     'canadaServices',
-
+    'contactServices'
     ])
     .constant('_', window._);

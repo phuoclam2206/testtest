@@ -16,24 +16,33 @@
                     <div class="single-title">
                         <h3>Thông tin liên hệ</h3>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    <p>CÔNG TY TNHH MTV TRUNG TÂM DỊCH VỤ TOVA</p>
                     <div class="contact-address-container">
+                        <div class="contact-address-info">
+                            <div class="contact-icon">
+                                <i class="fa fa-university"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>TRỤ SỞ CHÍNH</h4>
+                                <span>302 Nguyễn Văn Cừ, Q.Liên Chiểu, Tp Đà Nẵng</span>
+                            </div>
+                        </div>
                         <div class="contact-address-info">
                             <div class="contact-icon">
                                 <i class="fa fa-map-marker"></i>
                             </div>
                             <div class="contact-text">
-                                <h4>Địa chỉ</h4>
-                                <span>11st Floor New World Tower Miami</span>
+                                <h4>VPDD</h4>
+                                <span>611 Điện Biên Phủ, Q.Thanh Khê, Tp Đà Nẵng</span>
                             </div>
                         </div>
                         <div class="contact-address-info">
                             <div class="contact-icon">
-                                <i class="fa fa-phone"></i>
+                                <i class="fa fa-mobile"></i>
                             </div>
                             <div class="contact-text">
                                 <h4>Điện thoại</h4>
-                                <span>(801) 2345 - 6789</span>
+                                <span>(0236) 369933</span>
                             </div>
                         </div>
                         <div class="contact-address-info">
@@ -42,7 +51,16 @@
                             </div>
                             <div class="contact-text">
                                 <h4>Email</h4>
-                                <span>admin@power-boosts.com</span>
+                                <span>duhoctova@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-address-info">
+                            <div class="contact-icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Hotline</h4>
+                                <span>0868.080.898 – 0888.778.773</span>
                             </div>
                         </div>
                     </div>
@@ -54,17 +72,17 @@
                         <h3>Gữi thư</h3>
                     </div>
                     <div class="contact-form-container">
-                        <form action="https://devitems.com/tf/techedu-preview/techedu/mail.php" method="post">
+                        <form ng-submit="sendMail(mail)" method="post">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" name="name" placeholder="Họ Tên">
+                                    <input type="text" name="name" placeholder="Họ Tên" ng-model="mail.name">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" name="email" placeholder="Email">
+                                    <input type="email" name="email" placeholder="Email" ng-model="mail.email">
                                 </div>
                             </div>
-                            <input type="text" name="subject" placeholder="Tiêu đề thư">
-                            <textarea name="message" class="yourmessage" placeholder="Nội dung thư"></textarea>
+                            <input type="text" name="subject" placeholder="Tiêu đề thư" ng-model="mail.title">
+                            <textarea name="message" class="yourmessage" placeholder="Nội dung thư" ng-model="mail.content"></textarea>
                             <button type="submit" class="button-default button-yellow"><i class="fa fa-send"></i>Gửi ngay</button>
                         </form>
                     </div>

@@ -15,11 +15,6 @@ angular.module("appRoutes", ['ui.router'])
                 templateUrl: 'admin/view/login.html',
                 controller: 'loginCtr'
             })
-            .state('emailConfirm', {
-                url: '/dashboard/email-confirm',
-                templateUrl: 'admin/view/email-confirm.html',
-                controller: 'emailConfirmCtr'
-            })
 
             // Route Japan study aboard
             .state('japanStudyAboard', {
@@ -163,7 +158,31 @@ angular.module("appRoutes", ['ui.router'])
                 url: '/dashboard/canada-study-board/update',
                 templateUrl: 'admin/view/canada-study-aboard/update-study-aboard.html',
                 controller: 'updateCanadaStudyAboardCtr'
-            });
+            })
+
+            .state('emailConfirm', {
+                url: '/dashboard/email-confirm',
+                templateUrl: 'admin/view/contact/email-confirm.html',
+                controller: 'emailConfirmCtr',
+                resolve: {
+                    emailConfirm: function (Contact) {
+                        return Contact.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('emailConfirmReply', {
+                url: '/dashboard/email-confirm/reply/:id',
+                templateUrl: 'admin/view/contact/email-reply.html',
+                controller: 'emailConfirmReplyCtr'
+            })
+            .state('emailConfirmView', {
+                url: '/dashboard/email-confirm/view/:id',
+                templateUrl: 'admin/view/contact/email-view.html',
+                controller: 'emailConfirmViewCtr'
+            })
+        ;
         // $locationProvider.html5Mode({
         //     enabled: true,
         //     requireBase: false

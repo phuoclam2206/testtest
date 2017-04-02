@@ -1,0 +1,20 @@
+.tab-content .tab-pane h3 {
+    margin-top: 10px;
+}
+
+.about-skill-text h2 {
+    color: #F5B120;
+}
+.skill-bars .slogan {
+    color: #F5B120;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header-logo-menu.stick {
+    position: static;
+}
+
+.header-top, .footer-area {
+    background: #6b541f;
+}
