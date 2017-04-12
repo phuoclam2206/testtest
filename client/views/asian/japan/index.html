@@ -5,33 +5,41 @@
         <div class="row">
             <div class="col-md-3 col-sm-4 activity">
                 <div class="single-activity">
-                    <div class="single-activity-icon">
+                    <a ui-sref="japanTag({tag:'visa'})">
+                        <div class="single-activity-icon">
                         <i class="fa fa-cc-visa"></i>
-                    </div>
+                        </div>
+                    </a>
                     <h4>Thủ tục xin Visa</h4>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4 activity">
                 <div class="single-activity">
-                    <div class="single-activity-icon">
-                        <i class="fa fa-graduation-cap"></i>
-                    </div>
+                    <a ui-sref="japanTag({tag:'education'})">
+                        <div class="single-activity-icon">
+                            <i class="fa fa-graduation-cap"></i>
+                        </div>
+                    </a>
                     <h4>Hệ thống giáo dục</h4>
                 </div>
             </div>
             <div class="col-md-3 col-sm-4 activity">
                 <div class="single-activity">
-                    <div class="single-activity-icon">
-                        <i class="fa fa-fort-awesome"></i>
-                    </div>
+                    <a ui-sref="japanTag({tag:'school'})">
+                        <div class="single-activity-icon">
+                            <i class="fa fa-fort-awesome"></i>
+                        </div>
+                    </a>
                     <h4>Các trường tại Nhật Bản</h4>
                 </div>
             </div>
             <div class="col-md-3 hidden-sm activity">
                 <div class="single-activity">
-                    <div class="single-activity-icon">
-                        <i class="fa fa-pencil"></i>
-                    </div>
+                    <a ui-sref="japanTag({tag:'study'})">
+                        <div class="single-activity-icon">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </a>
                     <h4>Sống và học tập tại Nhật Bản</h4>
                 </div>
             </div>
@@ -56,11 +64,6 @@
                         <div class="class-des">
                             <h4><a ui-sref="japanDetail({id:post._id})">{{post.title}}</a></h4>
                             <p ng-bind-html="post.sort_content"></p>
-                        </div>
-                        <div class="class-schedule">
-                            <span>AGE: 5 - 6 years</span>
-                            <span>CLASS SIZE: 25</span>
-                            <span class="arrow"><a href="#"><i class="fa fa-angle-right"></i></a></span>
                         </div>
                     </div>
                 </div>

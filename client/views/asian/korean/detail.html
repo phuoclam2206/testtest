@@ -3,7 +3,7 @@
 <div class="blog-details-area section-padding blog-two">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 col-md-8">
+            <div class="col-lg-8 col-md-7 col-md-offset-1">
                 <div class="blog-post-wrapper">
                     <div class="blog-post-details">
                         <h1>{{post.title}}</h1>
@@ -21,86 +21,41 @@
             <div class="col-lg-3 col-md-4">
                 <div class="single-widget-item">
                     <div class="single-title">
-                        <h3>All Classes</h3>
+                        <h3>Bài viết liên quan</h3>
                     </div>
                     <div class="single-widget-container">
-                        <ul class="sidebar-categories">
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Drawing</a></li>
-                            <li><a href="#">Color</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Children</a></li>
-                            <li><a href="#">Events</a></li>
-                        </ul>
+                        <div class="recent-post-item" ng-repeat="correlative in correlatives">
+                            <div class="recent-post-image">
+
+                                <a ui-sref="koreanDetail({id:correlative._id})"><img src="{{correlative.image}}" alt=""></a>
+                            </div>
+                            <div class="recent-post-text">
+                                <h4><a ui-sref="koreanDetail({id:correlative._id})">{{correlative.title}}</a></h4>
+                                <span><i class="fa fa-calendar"></i>{{correlative.created_date}}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="single-widget-item">
                     <div class="single-title">
-                        <h3>Recent Classes</h3>
+                        <h3>Bài viết xem nhiều</h3>
                     </div>
                     <div class="single-widget-container">
-                        <div class="recent-post-item">
+                        <div class="recent-post-item" ng-repeat="mostView in mostViews">
                             <div class="recent-post-image">
-                                <a href="#"><img src="/public/client/img/gallery/15.jpg" alt=""></a>
+                                <a ui-sref="koreanDetail({id:mostView._id})"><img src="{{mostView.image}}" alt=""></a>
                             </div>
                             <div class="recent-post-text">
-                                <h4><a href="#">Alphabet Match Class</a></h4>
-                                <span><i class="fa fa-calendar"></i>March 25, 2016</span>
+                                <h4><a ui-sref="koreanDetail({id:mostView._id})">{{mostView.title}}</a></h4>
+                                <span><i class="fa fa-calendar"></i>{{mostView.created_date}}</span>
                             </div>
                         </div>
-                        <div class="recent-post-item">
-                            <div class="recent-post-image">
-                                <a href="#"><img src="/public/client/img/gallery/16.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-post-text">
-                                <h4><a href="#">Cool Math Class</a></h4>
-                                <span><i class="fa fa-calendar"></i>April 23, 2016</span>
-                            </div>
-                        </div>
-                        <div class="recent-post-item">
-                            <div class="recent-post-image">
-                                <a href="#"><img src="/public/client/img/gallery/17.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-post-text">
-                                <h4><a href="#">Color Match Class</a></h4>
-                                <span><i class="fa fa-calendar"></i>July 12, 2016</span>
-                            </div>
-                        </div>
-                        <div class="recent-post-item">
-                            <div class="recent-post-image">
-                                <a href="#"><img src="/public/client/img/gallery/18.jpg" alt=""></a>
-                            </div>
-                            <div class="recent-post-text">
-                                <h4><a href="#">Letter Match Class</a></h4>
-                                <span><i class="fa fa-calendar"></i>June 29, 2016</span>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="single-widget-item hidden-sm">
                     <div class="single-widget-container">
                         <div class="fb-page" data-href="https://www.facebook.com/Du-H%E1%BB%8Dc-H%C3%A0n-Qu%E1%BB%91c-TOVA-T%E1%BA%A1i-%C4%90%C3%A0-N%E1%BA%B5ng-1125120230914102/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Du-H%E1%BB%8Dc-H%C3%A0n-Qu%E1%BB%91c-TOVA-T%E1%BA%A1i-%C4%90%C3%A0-N%E1%BA%B5ng-1125120230914102/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Du-H%E1%BB%8Dc-H%C3%A0n-Qu%E1%BB%91c-TOVA-T%E1%BA%A1i-%C4%90%C3%A0-N%E1%BA%B5ng-1125120230914102/">Du Học Hàn Quốc TOVA Tại Đà Nẵng</a></blockquote></div>
-                    </div>
-                </div>
-                <div class="single-widget-item">
-                    <div class="single-title">
-                        <h3>Tags</h3>
-                    </div>
-                    <div class="single-widget-container">
-                        <ul class="tag-list">
-                            <li><a href="#">Art Class</a></li>
-                            <li><a href="#">Class</a></li>
-                            <li><a href="#">Letter</a></li>
-                            <li><a href="#">Sport Class</a></li>
-                            <li><a href="#">Learn</a></li>
-                            <li><a href="#">Color</a></li>
-                            <li><a href="#">Language</a></li>
-                            <li><a href="#">Paint</a></li>
-                            <li><a href="#">Letter</a></li>
-                            <li><a href="#">Paint Class</a></li>
-                            <li><a href="#">Toys</a></li>
-                            <li><a href="#">Color</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>

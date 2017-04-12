@@ -12,7 +12,9 @@ var KoreanStudyAboardPost = new Schema({
     is_active: {type: Boolean, default: false},
     created_date: {type: Number},
     image: {type: String},
-    sort_content: {type: String}
+    sort_content: {type: String},
+    tag: {type: String},
+    view: {type: Number}
 }, {collection: 'korean_study_aboard_post'});
 
 KoreanStudyAboardPost.plugin(paginator);

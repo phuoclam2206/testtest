@@ -6,13 +6,23 @@ angular.module('japanServices', [])
         var jpPostFactory = {};
 
         // JpPost.fetch
-        jpPostFactory.fetch = function (limit, page) {
-            return $http.get('/api/asian/japan?limit=' + limit + '&page=' + page);
+        jpPostFactory.fetch = function (limit, page, tag) {
+            return $http.get('/api/asian/japan?limit=' + limit + '&page=' + page + '&tag=' + tag);
         };
 
         // JpPost.fetchDetail
         jpPostFactory.fetchDetail = function (id) {
             return $http.get('/api/asian/japan/detail/' + id);
+        };
+
+        // JpPost.fetchMostView
+        jpPostFactory.fetchMostView = function () {
+            return $http.get('/api/asian/japan/fetch_most_view');
+        };
+
+        // JpPost.fetchCorrelative
+        jpPostFactory.fetchCorrelative = function (tagName) {
+            return $http.get('/api/asian/japan/fetch_correlative?tag=' + tagName);
         };
 
         return jpPostFactory;

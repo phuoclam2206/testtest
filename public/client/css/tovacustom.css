@@ -18,3 +18,9 @@
 .header-top, .footer-area {
     background: #6b541f;
 }
+
+.section-title h3 {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    line-height: 30px;
+}

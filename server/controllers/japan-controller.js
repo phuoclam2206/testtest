@@ -21,7 +21,8 @@ var japanController = {
                         is_active: req.body.isActive,
                         created_date: Math.round(new Date().getTime()/1000),
                         image: filename,
-                        sort_content: req.body.sort_content
+                        sort_content: req.body.sort_content,
+                        tag: req.body.tag
                     });
                     japanStudyAboardPost.save();
                     res.json(japanStudyAboardPost);
@@ -32,7 +33,7 @@ var japanController = {
     },
 
     fetch: function (req, res) {
-        var select = '_id title created_date is_active content sort_content';
+        var select = '_id title created_date is_active content sort_content tag';
         paging = paginatorUtil.index(req, select, null);
         JapanStudyAboardPost.paginate(paging.query, paging.option, function (err, result) {
             return res.json(result);
@@ -54,7 +55,8 @@ var japanController = {
                     title: req.body.title,
                     is_active: req.body.isActive,
                     content: req.body.content,
-                    sort_content: req.body.sort_content
+                    sort_content: req.body.sort_content,
+                    tag: req.body.tag
                 }
             },
             {upsert: true},

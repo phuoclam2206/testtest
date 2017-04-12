@@ -30,6 +30,18 @@ angular.module("appRoutes", ['ui.router'])
                 templateUrl: 'client/views/asian/japan/detail.html',
                 controller: 'japanDetailCtr'
             })
+            .state('japanTag', {
+                url: '/japan/tag?tag',
+                templateUrl: 'client/views/asian/japan/index.html',
+                controller: 'japanTagCtr',
+                resolve: {
+                    postJapanTagStudyAboard: function (JpPost, $stateParams) {
+                        return JpPost.fetch(10,1, $stateParams.tag).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
 
             // Route Korean
             .state('korean', {
@@ -48,6 +60,18 @@ angular.module("appRoutes", ['ui.router'])
                 url: '/korean/detail/:id',
                 templateUrl: 'client/views/asian/korean/detail.html',
                 controller: 'koreanDetailCtr'
+            })
+            .state('koreanTag', {
+                url: '/korean/tag?tag',
+                templateUrl: 'client/views/asian/korean/index.html',
+                controller: 'koreanTagCtr',
+                resolve: {
+                    postKoreanTagStudyAboard: function (KrPost, $stateParams) {
+                        return KrPost.fetch(10,1, $stateParams.tag).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
             })
 
             // Route Germany
@@ -68,6 +92,18 @@ angular.module("appRoutes", ['ui.router'])
                 templateUrl: 'client/views/euro/germany/detail.html',
                 controller: 'germanyDetailCtr'
             })
+            .state('germanyTag', {
+                url: '/germany/tag?tag',
+                templateUrl: 'client/views/euro/germany/index.html',
+                controller: 'germanyTagCtr',
+                resolve: {
+                    postGermanyTagStudyAboard: function (GrPost, $stateParams) {
+                        return GrPost.fetch(10,1, $stateParams.tag).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
 
             // Route American
             .state('american', {
@@ -86,6 +122,18 @@ angular.module("appRoutes", ['ui.router'])
                 url: '/american/detail/:id',
                 templateUrl: 'client/views/euro/american/detail.html',
                 controller: 'americanDetailCtr'
+            })
+            .state('americanTag', {
+                url: '/american/tag?tag',
+                templateUrl: 'client/views/euro/american/index.html',
+                controller: 'americanTagCtr',
+                resolve: {
+                    postAmericanTagStudyAboard: function (ArPost, $stateParams) {
+                        return ArPost.fetch(10,1, $stateParams.tag).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
             })
 
             // Route Australia
@@ -106,6 +154,18 @@ angular.module("appRoutes", ['ui.router'])
                 templateUrl: 'client/views/euro/australia/detail.html',
                 controller: 'australiaDetailCtr'
             })
+            .state('australiaTag', {
+                url: '/australia/tag?tag',
+                templateUrl: 'client/views/euro/australia/index.html',
+                controller: 'australiaTagCtr',
+                resolve: {
+                    postAustraliaTagStudyAboard: function (AuPost, $stateParams) {
+                        return AuPost.fetch(10,1, $stateParams.tag).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
 
             // Route Canada
             .state('canada', {
@@ -124,6 +184,18 @@ angular.module("appRoutes", ['ui.router'])
                 url: '/canada/detail/:id',
                 templateUrl: 'client/views/euro/canada/detail.html',
                 controller: 'canadaDetailCtr'
+            })
+            .state('canadaTag', {
+                url: '/canada/tag?tag',
+                templateUrl: 'client/views/euro/canada/index.html',
+                controller: 'canadaTagCtr',
+                resolve: {
+                    postCanadaTagStudyAboard: function (CaPost, $stateParams) {
+                        return CaPost.fetch(10,1, $stateParams.tag).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
             })
 
             // Route Contact

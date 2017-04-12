@@ -128,26 +128,38 @@ app.get('/', function (req,res) {
 // Client Japan
 app.get('/api/asian/japan', clientJapanController.fetch);
 app.get('/api/asian/japan/detail/:id', clientJapanController.fetchDetail);
+app.get('/api/asian/japan/fetch_most_view', clientJapanController.fetchMostView);
+app.get('/api/asian/japan/fetch_correlative', clientJapanController.fetchCorrelative);
 
 // Client Korean
 app.get('/api/asian/korean', clientKoreanController.fetch);
 app.get('/api/asian/korean/detail/:id', clientKoreanController.fetchDetail);
+app.get('/api/asian/korean/fetch_most_view', clientKoreanController.fetchMostView);
+app.get('/api/asian/korean/fetch_correlative', clientKoreanController.fetchCorrelative);
 
 // Client Germany
 app.get('/api/euro/germany', clientGermanyController.fetch);
 app.get('/api/euro/germany/detail/:id', clientGermanyController.fetchDetail);
+app.get('/api/euro/germany/fetch_most_view', clientGermanyController.fetchMostView);
+app.get('/api/euro/germany/fetch_correlative', clientGermanyController.fetchCorrelative);
 
 // Client American
 app.get('/api/euro/american', clientAmericanController.fetch);
 app.get('/api/euro/american/detail/:id', clientAmericanController.fetchDetail);
+app.get('/api/euro/american/fetch_most_view', clientAmericanController.fetchMostView);
+app.get('/api/euro/american/fetch_correlative', clientAmericanController.fetchCorrelative);
 
 // Client Australia
 app.get('/api/euro/australia', clientAustraliaController.fetch);
 app.get('/api/euro/australia/detail/:id', clientAustraliaController.fetchDetail);
+app.get('/api/euro/australia/fetch_most_view', clientAustraliaController.fetchMostView);
+app.get('/api/euro/australia/fetch_correlative', clientAustraliaController.fetchCorrelative);
 
 // Client Canada
 app.get('/api/euro/canada', clientCanadaController.fetch);
 app.get('/api/euro/canada/detail/:id', clientCanadaController.fetchDetail);
+app.get('/api/euro/canada/fetch_most_view', clientCanadaController.fetchMostView);
+app.get('/api/euro/canada/fetch_correlative', clientCanadaController.fetchCorrelative);
 
 // Client Contact
 app.post('/api/contact/send_mail', clientContact.saveMail);

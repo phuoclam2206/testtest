@@ -12,7 +12,9 @@ var AmericanStudyAboardPost = new Schema({
     is_active: {type: Boolean, default: false},
     created_date: {type: Number},
     image: {type: String},
-    sort_content: {type: String}
+    sort_content: {type: String},
+    tag: {type: String},
+    view: {type: Number}
 }, {collection: 'american_study_aboard_post'});
 
 AmericanStudyAboardPost.plugin(paginator);

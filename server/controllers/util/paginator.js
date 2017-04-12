@@ -11,6 +11,10 @@ paginator.index = function (req, select, populate) {
         query = {'title': new RegExp(req.query.search, 'i')};
     }
 
+    if (req.query.tag != null && req.query.tag != "undefined") {
+        query.tag = req.query.tag;
+    }
+
     if (!req.query.limit || isNaN(parseFloat(req.query.limit)) || parseFloat(req.query.limit) < 1){
         req.query.limit = 10;
     }

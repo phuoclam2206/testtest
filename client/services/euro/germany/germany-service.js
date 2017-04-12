@@ -3,17 +3,27 @@
  */
 angular.module('germanyServices', [])
     .factory('GrPost', function ($http) {
-        var jpPostFactory = {};
+        var grPostFactory = {};
 
         // GrPost.fetch
-        jpPostFactory.fetch = function (limit, page) {
-            return $http.get('/api/euro/germany?limit=' + limit + '&page=' + page);
+        grPostFactory.fetch = function (limit, page, tag) {
+            return $http.get('/api/euro/germany?limit=' + limit + '&page=' + page + '&tag=' + tag);
         };
 
         // GrPost.fetchDetail
-        jpPostFactory.fetchDetail = function (id) {
+        grPostFactory.fetchDetail = function (id) {
             return $http.get('/api/euro/germany/detail/' + id);
         };
 
-        return jpPostFactory;
+        // JpPost.fetchMostView
+        grPostFactory.fetchMostView = function () {
+            return $http.get('/api/euro/germany/fetch_most_view');
+        };
+
+        // JpPost.fetchCorrelative
+        grPostFactory.fetchCorrelative = function (tagName) {
+            return $http.get('/api/euro/germany/fetch_correlative?tag=' + tagName);
+        };
+
+        return grPostFactory;
     });
