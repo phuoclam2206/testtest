@@ -29,7 +29,10 @@ angular.module('authServices', [])
 
         // Auth.logout()
         authFactory.logout = function () {
-            AuthToken.setToken();
+            return $http.post('/api/dashboard/user/logout').then(function (response) {
+                AuthToken.setToken();
+                $window.location.href = '/login';
+            });
         };
         
         authFactory.getUser = function () {

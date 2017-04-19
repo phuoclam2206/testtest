@@ -31,7 +31,19 @@ angular.module('tovaApp', [
     ])
     .constant('_', window._)
     .config(function ($httpProvider) {
-        $httpProvider.interceptors.push('AuthInterceptors');
+        // $httpProvider.interceptors.push(function($q, $location) {
+        //     return {
+        //         response: function(response) {
+        //             // do something on success
+        //             return response;
+        //         },
+        //         responseError: function(response) {
+        //             if (response.status === 401)
+        //                 $location.url('/login');
+        //             return $q.reject(response);
+        //         }
+        //     };
+        // });
     })
     .run(function (Auth, $location, $rootScope) {
         // $rootScope.$on('$stateChangeStart', function(event) {

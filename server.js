@@ -29,6 +29,33 @@ var clientAustraliaController = require("./server/controllers/client/euro/austra
 var clientCanadaController = require("./server/controllers/client/euro/canada/canada-controller");
 var clientContact = require("./server/controllers/client/contact/contact-controller");
 
+
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+//==================================================================
+// Define the strategy to be used by PassportJS
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        authencationController.login(username, password).then(function (response) {
+            if (response != null && response.username) // stupid example
+                return done(null, {name: "admin"});
+            return done(null, false, { message: 'Incorrect username.' });
+        });
+    }
+));
+
+// Serialized and deserialized methods when got from session
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+//==================================================================
+
+
 var app = express();
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/tova");
@@ -43,6 +70,8 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "*");
     next();
 });
+app.use(passport.initialize()); // Add passport initialization
+app.use(passport.session());    // Add passport initialization
 
 // Set engine template
 app.engine('.html', require('ejs').__express);
@@ -67,7 +96,10 @@ app.get('/login', function (req, res) {
 
 // Authencation
 app.post('/api/dashboard/user/signup', authencationController.signup);
-app.post('/api/dashboard/user/login', authencationController.login);
+app.post('/api/dashboard/user/login', passport.authenticate('local'), function(req, res) {
+    res.redirect('/dashboard');
+});
+app.post('/api/dashboard/user/logout', authencationController.logout);
 
 // Japan
 app.get('/api/dashboard/japan-study-aboard', authencationController.checkLogin, japanController.fetch);
@@ -165,6 +197,6 @@ app.get('/api/euro/canada/fetch_correlative', clientCanadaController.fetchCorrel
 app.post('/api/contact/send_mail', clientContact.saveMail);
 
 
-app.listen('80', function () {
+app.listen('3000', function () {
    console.log("server start ");
 });
