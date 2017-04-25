@@ -28,6 +28,10 @@ angular.module('americanController',['americanServices', 'paginationUtil'])
                 $scope.pagination.currentPage = page;
             });
         };
+
+        ArPost.fetchMostView().then(function (response) {
+            $scope.mostViews = _.map(response.data).map(convertToDate);
+        });
     })
     .controller('americanTagCtr', function (Pagination, postAmericanTagStudyAboard, ArPost, $scope, $sce, $stateParams) {
         var convertToDate = function (data) {

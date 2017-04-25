@@ -28,6 +28,10 @@ angular.module('canadaController',['canadaServices', 'paginationUtil'])
                 $scope.pagination.currentPage = page;
             });
         };
+
+        CaPost.fetchMostView().then(function (response) {
+            $scope.mostViews = _.map(response.data).map(convertToDate);
+        });
     })
     .controller('canadaTagCtr', function (Pagination, postCanadaTagStudyAboard, CaPost, $scope, $sce, $stateParams) {
         var convertToDate = function (data) {
@@ -70,7 +74,6 @@ angular.module('canadaController',['canadaServices', 'paginationUtil'])
 
         CaPost.fetchMostView().then(function (response) {
             $scope.mostViews = _.map(response.data).map(convertToDate);
-
         });
 
         CaPost.fetchCorrelative($stateParams.tag).then(function (response) {

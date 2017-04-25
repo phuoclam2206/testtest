@@ -28,6 +28,10 @@ angular.module('australiaController',['australiaServices', 'paginationUtil'])
                 $scope.pagination.currentPage = page;
             });
         };
+
+        AuPost.fetchMostView().then(function (response) {
+            $scope.mostViews = _.map(response.data).map(convertToDate);
+        });
     })
     .controller('australiaTagCtr', function (Pagination, postAustraliaTagStudyAboard, AuPost, $scope, $sce, $stateParams) {
         var convertToDate = function (data) {
@@ -70,7 +74,6 @@ angular.module('australiaController',['australiaServices', 'paginationUtil'])
 
         AuPost.fetchMostView().then(function (response) {
             $scope.mostViews = _.map(response.data).map(convertToDate);
-
         });
 
         AuPost.fetchCorrelative($stateParams.tag).then(function (response) {

@@ -28,6 +28,10 @@ angular.module('germanyController',['germanyServices', 'paginationUtil'])
                 $scope.pagination.currentPage = page;
             });
         };
+
+        GrPost.fetchMostView().then(function (response) {
+            $scope.mostViews = _.map(response.data).map(convertToDate);
+        });
     })
     .controller('germanyTagCtr', function (Pagination, postGermanyTagStudyAboard, GrPost, $scope, $sce, $stateParams) {
         var convertToDate = function (data) {
@@ -70,7 +74,6 @@ angular.module('germanyController',['germanyServices', 'paginationUtil'])
 
         GrPost.fetchMostView().then(function (response) {
             $scope.mostViews = _.map(response.data).map(convertToDate);
-
         });
 
         GrPost.fetchCorrelative($stateParams.tag).then(function (response) {
