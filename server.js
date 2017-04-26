@@ -22,6 +22,7 @@ var canadaController = require("./server/controllers/canada-controller");
 var contactController = require("./server/controllers/contact-controller");
 var classKoreanController = require("./server/controllers/class-korean-controller");
 var newsController = require("./server/controllers/news-controller");
+var notifyController = require("./server/controllers/notify-controller");
 
 var clientJapanController = require("./server/controllers/client/asian/japan/japan-controller");
 var clientKoreanController = require("./server/controllers/client/asian/korean/korean-controller");
@@ -32,6 +33,7 @@ var clientCanadaController = require("./server/controllers/client/euro/canada/ca
 var clientContactController = require("./server/controllers/client/contact/contact-controller");
 var clientClassKoreanController = require("./server/controllers/client/class/korean/korean-controller");
 var clientNewsController = require("./server/controllers/client/news/news-controller");
+var clientNotifyController = require("./server/controllers/client/notify/notify-controller");
 
 
 var passport = require('passport');
@@ -163,6 +165,12 @@ app.post('/api/dashboard/news/create', authencationController.checkLogin, upload
 app.post('/api/dashboard/news/delete/:id', authencationController.checkLogin, newsController.delete);
 app.post('/api/dashboard/news/update', authencationController.checkLogin, uploadImage.any(), newsController.update);
 
+// Notify
+app.get('/api/dashboard/notify', authencationController.checkLogin, notifyController.fetch);
+app.post('/api/dashboard/notify/create', authencationController.checkLogin, uploadImage.any(), notifyController.create);
+app.post('/api/dashboard/notify/delete/:id', authencationController.checkLogin, notifyController.delete);
+app.post('/api/dashboard/notify/update', authencationController.checkLogin, uploadImage.any(), notifyController.update);
+
 
 // Upload Images
 require('./server/controllers/post-image-controller')(app);
@@ -218,10 +226,15 @@ app.get('/api/class/korean', clientClassKoreanController.fetch);
 app.get('/api/class/korean/detail/:id', clientClassKoreanController.fetchDetail);
 app.get('/api/class/korean/fetch_most_view', clientClassKoreanController.fetchMostView);
 
-// Client Class Korean
+// Client News
 app.get('/api/news', clientNewsController.fetch);
 app.get('/api/news/detail/:id', clientNewsController.fetchDetail);
 app.get('/api/news/fetch_most_view', clientNewsController.fetchMostView);
+
+// Client Notify
+app.get('/api/notify', clientNotifyController.fetch);
+app.get('/api/notify/detail/:id', clientNotifyController.fetchDetail);
+app.get('/api/notify/fetch_most_view', clientNotifyController.fetchMostView);
 
 app.listen('3000', function () {
    console.log("server start ");

@@ -231,6 +231,30 @@ angular.module("appRoutes", ['ui.router'])
                 templateUrl: 'admin/view/news/update.html',
                 controller: 'updateNewsCtr'
             })
+
+            // Route Notify
+            .state('notify', {
+                url: '/dashboard/notify',
+                templateUrl: 'admin/view/notify/index.html',
+                controller: 'fetchNotifyCtr',
+                resolve: {
+                    postNotify: function (NotifyPost) {
+                        return NotifyPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('notifyCreate', {
+                url: '/dashboard/notify/create',
+                templateUrl: 'admin/view/notify/create.html',
+                controller: 'createNotifyCtr'
+            })
+            .state('notifyUpdate', {
+                url: '/dashboard/notify/update',
+                templateUrl: 'admin/view/notify/update.html',
+                controller: 'updateNotifyCtr'
+            })
         ;
         // $locationProvider.html5Mode({
         //     enabled: true,

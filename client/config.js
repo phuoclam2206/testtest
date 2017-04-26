@@ -249,4 +249,23 @@ angular.module("appRoutes", ['ui.router'])
                 templateUrl: 'client/views/news/detail.html',
                 controller: 'newsDetailCtr'
             })
+
+            // Route Notify
+            .state('notify', {
+                url: '/notify',
+                templateUrl: 'client/views/notify/index.html',
+                controller: 'notifyCtr',
+                resolve: {
+                    postNotify: function (NotifyPost) {
+                        return NotifyPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('notifyDetail', {
+                url: '/notify/detail/:id',
+                templateUrl: 'client/views/notify/detail.html',
+                controller: 'notifyDetailCtr'
+            })
     });

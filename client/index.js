@@ -15,6 +15,7 @@ angular.module('tova', [
     'aboutController',
     'classKoreanController',
     'newsController',
+    'notifyController',
     'paginationUtil',
     'paginationDirective',
     'japanServices',
@@ -25,6 +26,7 @@ angular.module('tova', [
     'canadaServices',
     'contactServices',
     'classKoreanServices',
-    'newsServices'
+    'newsServices',
+    'notifyServices'
     ])
     .constant('_', window._);

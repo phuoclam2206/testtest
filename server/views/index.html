@@ -87,18 +87,17 @@
                                     <li><a ui-sref="classKorean">Học tiếng Hàn</a></li>
                                 </ul>
                             </li>
+                            <li><a><i class="fa fa-desktop"></i> Tin tức <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a ui-sref="notify">Thông báo</a></li>
+                                    <li><a ui-sref="news">Tin tức</a></li>
+                                </ul>
+                            </li>
                             <li><a><i class="fa fa-bar-chart-o"></i> Giới thiệu <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="#">Giới thiệu chung</a></li>
                                     <li><a href="#">Tầm nhìn</a></li>
                                     <li><a href="#">Sứ mệnh</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a><i class="fa fa-desktop"></i> Tin tức <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a ui-sref="news">Tin tức</a></li>
-                                    <li><a href="#">Thông báo</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -314,6 +313,7 @@
 <script src="/admin/controllers/canada-study-aboard-controller.js"></script>
 <script src="/admin/controllers/class-korean-controller.js"></script>
 <script src="/admin/controllers/news-controller.js"></script>
+<script src="/admin/controllers/notify-controller.js"></script>
 
 <!--Services-->
 <script src="/admin/services/authServices.js"></script>
@@ -328,6 +328,7 @@
 <script src="/admin/services/util/pagination.js"></script>
 <script src="/admin/services/util/tinymceOption.js"></script>
 <script src="/admin/services/news/newsServices.js"></script>
+<script src="/admin/services/notify/notifyServices.js"></script>
 
 <!--Directives-->
 <script src="/admin/directives/paginatorDirective.js"></script>

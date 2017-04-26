@@ -1,0 +1,25 @@
+<!--Class Grid Area Start-->
+<div class="class-grid-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6" ng-repeat="post in posts">
+                <div class="single-class">
+                    <div class="single-class-image">
+                        <a ui-sref="notifyDetail({id:post._id})">
+                            <img src="{{post.image}}" alt="">
+                            <span class="class-date">{{post.created_date}}</span>
+                        </a>
+                    </div>
+                    <div class="single-class-text">
+                        <div class="class-des">
+                            <h4><a ui-sref="notifyDetail({id:post._id})">{{post.title}}</a></h4>
+                            <p ng-bind-html="post.sort_content"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <pagination></pagination>
+    </div>
+</div>
+<!--End of Class Grid Area-->

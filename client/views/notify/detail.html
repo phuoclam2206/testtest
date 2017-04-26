@@ -1,0 +1,46 @@
+
+<!--Blog Details Area Start-->
+<div class="blog-details-area section-padding blog-two">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-7 col-md-offset-1">
+                <div class="blog-post-wrapper">
+                    <div class="blog-post-details">
+                        <h1>{{post.title}}</h1>
+                        <span style="margin-bottom: 0px"><i class="fa fa-calendar"></i>{{post.created_date}}</span>
+                        <div style="margin-bottom: 15px" class="fb-like" data-href="http://duhoctova.com/#!/notify/detail/{{post._id}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                    </div>
+                    <div class="blog-post-details-text" ng-bind-html="post.content">
+                    </div>
+
+                    <div class="fb-comments" data-href="http://duhoctova.com/#!/notify/detail/{{post._id}}" data-width="100%" data-numposts="10"></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="single-widget-item">
+                    <div class="single-title">
+                        <h3>Bài viết xem nhiều</h3>
+                    </div>
+                    <div class="single-widget-container">
+                        <div class="recent-post-item" ng-repeat="mostView in mostViews">
+                            <div class="recent-post-image">
+                                <a ui-sref="notifyDetail({id:mostView._id})"><img src="{{mostView.image}}" alt=""></a>
+                            </div>
+                            <div class="recent-post-text">
+                                <h4><a ui-sref="notifyDetail({id:mostView._id})">{{mostView.title}}</a></h4>
+                                <span><i class="fa fa-calendar"></i>{{mostView.created_date}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="single-widget-item hidden-sm">
+                    <div class="single-widget-container">
+                        <div class="fb-page" data-href="https://www.facebook.com/Du-H%E1%BB%8Dc-H%C3%A0n-Qu%E1%BB%91c-TOVA-T%E1%BA%A1i-%C4%90%C3%A0-N%E1%BA%B5ng-1125120230914102/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Du-H%E1%BB%8Dc-H%C3%A0n-Qu%E1%BB%91c-TOVA-T%E1%BA%A1i-%C4%90%C3%A0-N%E1%BA%B5ng-1125120230914102/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Du-H%E1%BB%8Dc-H%C3%A0n-Qu%E1%BB%91c-TOVA-T%E1%BA%A1i-%C4%90%C3%A0-N%E1%BA%B5ng-1125120230914102/">Du Học Hàn Quốc TOVA Tại Đà Nẵng</a></blockquote></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Blog Details Area-->
