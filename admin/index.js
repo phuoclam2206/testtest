@@ -20,6 +20,7 @@ angular.module('tovaApp', [
     'americanStudyAboardController',
     'australiaStudyAboardController',
     'canadaStudyAboardController',
+    'classKoreanController',
     'japanServices',
     'koreanServices',
     'germanyServices',
@@ -27,6 +28,7 @@ angular.module('tovaApp', [
     'australiaServices',
     'canadaServices',
     'contactServices',
+    'classKoreanServices'
 
     ])
     .constant('_', window._)

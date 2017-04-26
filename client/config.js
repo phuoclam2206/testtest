@@ -212,4 +212,22 @@ angular.module("appRoutes", ['ui.router'])
                 controller: 'aboutCtr'
             })
 
+            // Route Class Korean
+            .state('classKorean', {
+                url: '/class/korean',
+                templateUrl: 'client/views/class/korean/index.html',
+                controller: 'classKoreanCtr',
+                resolve: {
+                    postClassKoreanStudyAboard: function (CkPost) {
+                        return CkPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('classKoreanDetail', {
+                url: '/class/korean/detail/:id',
+                templateUrl: 'client/views/class/korean/detail.html',
+                controller: 'classKoreanDetailCtr'
+            })
     });

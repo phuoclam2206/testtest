@@ -160,6 +160,7 @@ angular.module("appRoutes", ['ui.router'])
                 controller: 'updateCanadaStudyAboardCtr'
             })
 
+            // Route email contact
             .state('emailConfirm', {
                 url: '/dashboard/email-confirm',
                 templateUrl: 'admin/view/contact/email-confirm.html',
@@ -181,6 +182,30 @@ angular.module("appRoutes", ['ui.router'])
                 url: '/dashboard/email-confirm/view/:id',
                 templateUrl: 'admin/view/contact/email-view.html',
                 controller: 'emailConfirmViewCtr'
+            })
+
+            // Route Class Korean
+            .state('classKorean', {
+                url: '/dashboard/class/korean',
+                templateUrl: 'admin/view/class/korean/index.html',
+                controller: 'fetchClassKoreanCtr',
+                resolve: {
+                    postClassKorean: function (CkPost) {
+                        return CkPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('classKoreanCreate', {
+                url: '/dashboard/class/korean/create',
+                templateUrl: 'admin/view/class/korean/create.html',
+                controller: 'createClassKoreanCtr'
+            })
+            .state('classKoreanUpdate', {
+                url: '/dashboard/class/korean/update',
+                templateUrl: 'admin/view/class/korean/update.html',
+                controller: 'updateClassKoreanCtr'
             })
         ;
         // $locationProvider.html5Mode({
