@@ -21,6 +21,7 @@ var australiaController = require("./server/controllers/australia-controller");
 var canadaController = require("./server/controllers/canada-controller");
 var contactController = require("./server/controllers/contact-controller");
 var classKoreanController = require("./server/controllers/class-korean-controller");
+var newsController = require("./server/controllers/news-controller");
 
 var clientJapanController = require("./server/controllers/client/asian/japan/japan-controller");
 var clientKoreanController = require("./server/controllers/client/asian/korean/korean-controller");
@@ -30,6 +31,7 @@ var clientAustraliaController = require("./server/controllers/client/euro/austra
 var clientCanadaController = require("./server/controllers/client/euro/canada/canada-controller");
 var clientContactController = require("./server/controllers/client/contact/contact-controller");
 var clientClassKoreanController = require("./server/controllers/client/class/korean/korean-controller");
+var clientNewsController = require("./server/controllers/client/news/news-controller");
 
 
 var passport = require('passport');
@@ -155,6 +157,12 @@ app.post('/api/dashboard/class/korean/create', authencationController.checkLogin
 app.post('/api/dashboard/class/korean/delete/:id', authencationController.checkLogin, classKoreanController.delete);
 app.post('/api/dashboard/class/korean/update', authencationController.checkLogin, uploadImage.any(), classKoreanController.update);
 
+// News
+app.get('/api/dashboard/news', authencationController.checkLogin, newsController.fetch);
+app.post('/api/dashboard/news/create', authencationController.checkLogin, uploadImage.any(), newsController.create);
+app.post('/api/dashboard/news/delete/:id', authencationController.checkLogin, newsController.delete);
+app.post('/api/dashboard/news/update', authencationController.checkLogin, uploadImage.any(), newsController.update);
+
 
 // Upload Images
 require('./server/controllers/post-image-controller')(app);
@@ -209,6 +217,11 @@ app.post('/api/contact/send_mail', clientContactController.saveMail);
 app.get('/api/class/korean', clientClassKoreanController.fetch);
 app.get('/api/class/korean/detail/:id', clientClassKoreanController.fetchDetail);
 app.get('/api/class/korean/fetch_most_view', clientClassKoreanController.fetchMostView);
+
+// Client Class Korean
+app.get('/api/news', clientNewsController.fetch);
+app.get('/api/news/detail/:id', clientNewsController.fetchDetail);
+app.get('/api/news/fetch_most_view', clientNewsController.fetchMostView);
 
 app.listen('3000', function () {
    console.log("server start ");

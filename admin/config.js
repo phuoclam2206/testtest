@@ -207,6 +207,30 @@ angular.module("appRoutes", ['ui.router'])
                 templateUrl: 'admin/view/class/korean/update.html',
                 controller: 'updateClassKoreanCtr'
             })
+
+            // Route News
+            .state('news', {
+                url: '/dashboard/news',
+                templateUrl: 'admin/view/news/index.html',
+                controller: 'fetchNewsCtr',
+                resolve: {
+                    postNews: function (NewsPost) {
+                        return NewsPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('newsCreate', {
+                url: '/dashboard/news/create',
+                templateUrl: 'admin/view/news/create.html',
+                controller: 'createNewsCtr'
+            })
+            .state('newsUpdate', {
+                url: '/dashboard/news/update',
+                templateUrl: 'admin/view/news/update.html',
+                controller: 'updateNewsCtr'
+            })
         ;
         // $locationProvider.html5Mode({
         //     enabled: true,

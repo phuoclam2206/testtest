@@ -230,4 +230,23 @@ angular.module("appRoutes", ['ui.router'])
                 templateUrl: 'client/views/class/korean/detail.html',
                 controller: 'classKoreanDetailCtr'
             })
+
+            // Route News
+            .state('news', {
+                url: '/news',
+                templateUrl: 'client/views/news/index.html',
+                controller: 'newsCtr',
+                resolve: {
+                    postNews: function (NewsPost) {
+                        return NewsPost.fetch(10,1).then(function (response) {
+                            return response.data;
+                        });
+                    }
+                }
+            })
+            .state('newsDetail', {
+                url: '/news/detail/:id',
+                templateUrl: 'client/views/news/detail.html',
+                controller: 'newsDetailCtr'
+            })
     });

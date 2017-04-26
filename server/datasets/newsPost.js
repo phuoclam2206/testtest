@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var paginator = require("mongoose-paginate");
 
 
-var ClassKoreanPost = new Schema({
+var NewsPost = new Schema({
     title: {type: String, required: true},
     content: {type: String, required: true},
     is_active: {type: Boolean, default: false},
@@ -15,7 +15,7 @@ var ClassKoreanPost = new Schema({
     sort_content: {type: String},
     tag: {type: String},
     view: {type: Number}
-}, {collection: 'class_korean_post'});
+}, {collection: 'news_post'});
 
-ClassKoreanPost.plugin(paginator);
-module.exports = mongoose.model('ClassKoreanPost', ClassKoreanPost);
+NewsPost.plugin(paginator);
+module.exports = mongoose.model('NewsPost', NewsPost);

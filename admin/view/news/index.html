@@ -1,0 +1,60 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2> Bài viết
+                <small> Tin tức</small>
+            </h2>
+            <ul class="nav navbar-right panel_toolbox">
+                </li>
+                <li class="dropdown">
+                    <a ui-sref="newsCreate" role="button" aria-expanded="false"><i
+                            class="fa fa-newspaper-o"></i></a>
+                </li>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+
+            <!--<p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p>-->
+
+            <div class="table-responsive">
+                <table class="table table-striped jambo_table bulk_action">
+                    <thead>
+                    <tr class="headings">
+
+                        <th class="column-title">Kích hoạt</th>
+                        <th class="column-title">Tiêu đề</th>
+                        <th class="column-title">Ngày tạo</th>
+                        <th class="column-title no-link last"><span class="nobr">Action</span>
+                        </th>
+                        <th class="bulk-actions" colspan="7">
+                            <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span
+                                    class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr class="even pointer" ng-repeat="post in posts">
+                        <td class="a-center ">
+                            <input type="checkbox" class="flat" disabled name="table_records" ng-checked="post.is_active">
+                        </td>
+                        <td class=" ">{{post.title}}</td>
+                        <td class=" ">{{post.created_date}}</td>
+                        <td class=" last">
+                            <i ng-click="updatePost(post)" class="fa fa-pencil-square-o" style="margin-right: 10px"></i>
+                            <i ng-click="deletePost(post._id)" class="fa fa-trash-o"></i>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+                <pagination></pagination>
+
+            </div>
+        </div>
+    </div>
+</div>
+
