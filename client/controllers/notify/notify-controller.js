@@ -2,12 +2,12 @@
  * Created by phuoclam on 21/02/2017.
  */
 angular.module('notifyController',['notifyServices', 'paginationUtil'])
-    .controller('notifyCtr', function (Pagination, postNotify, NotifyPost, $scope, $sce) {
+    .controller('notifyCtr', function (Pagination, CutString, postNotify, NotifyPost, $scope, $sce) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
                 content: $sce.trustAsHtml(data.content),
-                sort_content: $sce.trustAsHtml(data.sort_content)
+                sort_content: $sce.trustAsHtml(CutString.string(data.sort_content))
             });
         };
 

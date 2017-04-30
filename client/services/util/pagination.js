@@ -19,4 +19,16 @@ angular.module('paginationUtil', [])
         };
 
         return paginationFactory;
+    })
+    .factory('CutString', function () {
+        var cutStringFactory = {};
+        var length = 250;
+        // CutString.string
+        cutStringFactory.string = function (s){
+            var cut= s.indexOf(' ', length);
+            if(cut== -1) return s;
+            return s.substring(0, cut)
+        };
+
+        return cutStringFactory;
     });
