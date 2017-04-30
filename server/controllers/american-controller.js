@@ -4,32 +4,27 @@
 
 var AmericanStudyAboardPost = require('../datasets/americanStudyAboardPost');
 var paginatorUtil = require('../controllers/util/paginator');
-// var uploadImage = require('../controllers/util/image');
+var image = require('../controllers/util/image');
 var fs = require("fs");
+var sharp = require("sharp");
 
 
 var americanController = {
     create: function (req, res) {
-        if (req.files) {
-            req.files.forEach(function (file) {
-                var filename = "public/images/" + (new Date).valueOf() + "-" + file.originalname;
-                fs.rename(file.path, filename, function (err) {
-                    if(err) next(err);
-                    var americanStudyAboardPost = new AmericanStudyAboardPost({
-                        title: req.body.title,
-                        content: req.body.content,
-                        is_active: req.body.isActive,
-                        created_date: Math.round(new Date().getTime()/1000),
-                        image: filename,
-                        sort_content: req.body.sort_content,
-                        tag: req.body.tag
-                    });
-                    americanStudyAboardPost.save();
-                    res.json(americanStudyAboardPost);
-                })
-            })
-        }
-
+        image.resize(req.file, function (err, newPath) {
+            if(err) next(err);
+            var americanStudyAboardPost = new AmericanStudyAboardPost({
+                title: req.body.title,
+                content: req.body.content,
+                is_active: req.body.isActive,
+                created_date: Math.round(new Date().getTime()/1000),
+                image: newPath,
+                sort_content: req.body.sort_content,
+                tag: req.body.tag
+            });
+            americanStudyAboardPost.save();
+            res.json(americanStudyAboardPost);
+        });
     },
 
     fetch: function (req, res) {

@@ -59,7 +59,7 @@ angular.module('japanStudyAboardController', ['japanServices', 'paginationUtil',
         $scope.tinymceOptions = Tinymce;
         $scope.post = JpPost.getPost();
         $scope.updatePost = function (post) {
-            JpPost.update(post).then(function (response) {
+            JpPost.update(post, $scope.file).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/japan-study-board")
                 }

@@ -22,7 +22,7 @@ angular.module('paginationUtil', [])
     })
     .factory('CutString', function () {
         var cutStringFactory = {};
-        var length = 250;
+        var length = 180;
         // CutString.string
         cutStringFactory.string = function (s){
             var cut= s.indexOf(' ', length);

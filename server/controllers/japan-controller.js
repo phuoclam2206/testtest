@@ -4,32 +4,27 @@
 
 var JapanStudyAboardPost = require('../datasets/japanStudyAboardPost');
 var paginatorUtil = require('../controllers/util/paginator');
-// var uploadImage = require('../controllers/util/image');
+var image = require('../controllers/util/image');
 var fs = require("fs");
+var sharp = require("sharp");
 
 
 var japanController = {
-    create: function (req, res) {
-        if (req.files) {
-            req.files.forEach(function (file) {
-                var filename = "public/images/" + (new Date).valueOf() + "-" + file.originalname;
-                fs.rename(file.path, filename, function (err) {
-                    if(err) next(err);
-                    var japanStudyAboardPost = new JapanStudyAboardPost({
-                        title: req.body.title,
-                        content: req.body.content,
-                        is_active: req.body.isActive,
-                        created_date: Math.round(new Date().getTime()/1000),
-                        image: filename,
-                        sort_content: req.body.sort_content,
-                        tag: req.body.tag
-                    });
-                    japanStudyAboardPost.save();
-                    res.json(japanStudyAboardPost);
-                })
-            })
-        }
-
+    create: function (req, res, next) {
+        image.resize(req.file, function (err, newPath) {
+            if(err) next(err);
+            var japanStudyAboardPost = new JapanStudyAboardPost({
+                title: req.body.title,
+                content: req.body.content,
+                is_active: req.body.isActive,
+                created_date: Math.round(new Date().getTime()/1000),
+                image: newPath,
+                sort_content: req.body.sort_content,
+                tag: req.body.tag
+            });
+            japanStudyAboardPost.save();
+            res.json(japanStudyAboardPost);
+        });
     },
 
     fetch: function (req, res) {
@@ -48,22 +43,47 @@ var japanController = {
     },
 
     update: function (req, res, next) {
-        JapanStudyAboardPost.update(
-            {_id: req.body._id},
-            {
-                $set: {
-                    title: req.body.title,
-                    is_active: req.body.isActive,
-                    content: req.body.content,
-                    sort_content: req.body.sort_content,
-                    tag: req.body.tag
-                }
-            },
-            {upsert: true},
-            function (err, doc) {
-                if (err) next(err);
-                return res.json(doc);
+        if (req.file) {
+            image.resize(req.file, function (err, newPath) {
+                if(err) next(err);
+
+                JapanStudyAboardPost.update(
+                    {_id: req.body._id},
+                    {
+                        $set: {
+                            title: req.body.title,
+                            is_active: req.body.isActive,
+                            content: req.body.content,
+                            sort_content: req.body.sort_content,
+                            tag: req.body.tag,
+                            image: newPath
+                        }
+                    },
+                    {upsert: true},
+                    function (err, doc) {
+                        if (err) next(err);
+                        return res.json(doc);
+                    });
             });
+        } else {
+            JapanStudyAboardPost.update(
+                {_id: req.body._id},
+                {
+                    $set: {
+                        title: req.body.title,
+                        is_active: req.body.isActive,
+                        content: req.body.content,
+                        sort_content: req.body.sort_content,
+                        tag: req.body.tag
+                    }
+                },
+                {upsert: true},
+                function (err, doc) {
+                    if (err) next(err);
+                    return res.json(doc);
+                });
+        }
+
     }
 };
 module.exports = japanController;

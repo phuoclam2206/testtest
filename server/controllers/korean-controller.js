@@ -3,31 +3,27 @@
  */
 
 var KoreanStudyAboardPost = require('../datasets/koreanStudyAboardPost');
+var image = require('../controllers/util/image');
 var paginatorUtil = require('../controllers/util/paginator');
 var fs = require("fs");
+var sharp = require("sharp");
 
 var koreanController = {
     create: function (req, res) {
-        if (req.files) {
-            req.files.forEach(function (file) {
-                var filename = "public/images/" + (new Date).valueOf() + "-" + file.originalname;
-                fs.rename(file.path, filename, function (err) {
-                    if(err) next(err);
-                    var koreanStudyAboardPost = new KoreanStudyAboardPost({
-                        title: req.body.title,
-                        content: req.body.content,
-                        is_active: req.body.isActive,
-                        created_date: Math.round(new Date().getTime()/1000),
-                        image: filename,
-                        sort_content: req.body.sort_content,
-                        tag: req.body.tag
-                    });
-                    koreanStudyAboardPost.save();
-                    res.json(koreanStudyAboardPost);
-                })
-            })
-        }
-
+        image.resize(req.file, function (err, newPath) {
+            if(err) next(err);
+            var koreanStudyAboardPost = new KoreanStudyAboardPost({
+                title: req.body.title,
+                content: req.body.content,
+                is_active: req.body.isActive,
+                created_date: Math.round(new Date().getTime()/1000),
+                image: newPath,
+                sort_content: req.body.sort_content,
+                tag: req.body.tag
+            });
+            koreanStudyAboardPost.save();
+            res.json(koreanStudyAboardPost);
+        });
     },
 
     fetch: function (req, res) {

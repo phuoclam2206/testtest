@@ -11,7 +11,9 @@ var flash       = require('req-flash');
 var fs          = require('fs');
 var multer      = require('multer');
 var uploadImage = multer({ dest : 'public/images/'});
+var sharp       = require('sharp');
 
+var image = require('./server/controllers/util/image');
 var authencationController = require("./server/controllers/authencation-controller");
 var japanController = require("./server/controllers/japan-controller");
 var koreanController = require("./server/controllers/korean-controller");
@@ -109,9 +111,38 @@ app.post('/api/dashboard/user/logout', authencationController.logout);
 
 // Japan
 app.get('/api/dashboard/japan-study-aboard', authencationController.checkLogin, japanController.fetch);
-app.post('/api/dashboard/japan-study-aboard/create', authencationController.checkLogin, uploadImage.any(), japanController.create);
+app.post('/api/dashboard/japan-study-aboard/create', authencationController.checkLogin, image.multer, japanController.create);
 app.post('/api/dashboard/japan-study-aboard/delete/:id', authencationController.checkLogin, japanController.delete);
-app.post('/api/dashboard/japan-study-aboard/update', authencationController.checkLogin, uploadImage.any(), japanController.update);
+app.post('/api/dashboard/japan-study-aboard/update', authencationController.checkLogin, image.multer, japanController.update);
+
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'public/images/')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, file.fieldname + '-' + Date.now())
+//     }
+// });
+//
+// var upload = multer({ storage: storage });
+//
+// app.post('/api/dashboard/japan-study-aboard/create',
+//     upload.single('image'), function(req, res) {
+//         // resize image
+//         sharp(req.file.path).resize(300, 200).toFile(req.file.path + "aaa", function(err) {
+//             if (err) {
+//                 console.log(err);
+//                 throw err;
+//             }
+//
+//             fs.unlinkSync(req.file.path);
+//
+//             // output.jpg is a 300 pixels wide and 200 pixels high image
+//             // containing a scaled and cropped version of input.jpg
+//             res.json("aaa");
+//         });
+//         // res.json("aab");
+//     });
 
 
 // Korean

@@ -4,32 +4,26 @@
 
 var AustraliaStudyAboardPost = require('../datasets/australiaStudyAboardPost');
 var paginatorUtil = require('../controllers/util/paginator');
-// var uploadImage = require('../controllers/util/image');
+var image = require('../controllers/util/image');
 var fs = require("fs");
-
+var sharp = require("sharp");
 
 var australiaController = {
     create: function (req, res) {
-        if (req.files) {
-            req.files.forEach(function (file) {
-                var filename = "public/images/" + (new Date).valueOf() + "-" + file.originalname;
-                fs.rename(file.path, filename, function (err) {
-                    if(err) next(err);
-                    var australiaStudyAboardPost = new AustraliaStudyAboardPost({
-                        title: req.body.title,
-                        content: req.body.content,
-                        is_active: req.body.isActive,
-                        created_date: Math.round(new Date().getTime()/1000),
-                        image: filename,
-                        sort_content: req.body.sort_content,
-                        tag: req.body.tag
-                    });
-                    australiaStudyAboardPost.save();
-                    res.json(australiaStudyAboardPost);
-                })
-            })
-        }
-
+        image.resize(req.file, function (err, newPath) {
+            if(err) next(err);
+            var australiaStudyAboardPost = new AustraliaStudyAboardPost({
+                title: req.body.title,
+                content: req.body.content,
+                is_active: req.body.isActive,
+                created_date: Math.round(new Date().getTime()/1000),
+                image: newPath,
+                sort_content: req.body.sort_content,
+                tag: req.body.tag
+            });
+            australiaStudyAboardPost.save();
+            res.json(australiaStudyAboardPost);
+        });
     },
 
     fetch: function (req, res) {
