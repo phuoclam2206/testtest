@@ -18,7 +18,6 @@ angular.module('australiaStudyAboardController', ['australiaServices', 'paginati
             });
         };
 
-        console.log(Auth.isLoggedId());
         $scope.posts = _.map(postAustraliaStudyAboard.docs).map(convertToDate);
 
         $scope.pagination = Pagination.page(postAustraliaStudyAboard.limit, postAustraliaStudyAboard.limit, postAustraliaStudyAboard.total);
@@ -59,7 +58,7 @@ angular.module('australiaStudyAboardController', ['australiaServices', 'paginati
         $scope.tinymceOptions = Tinymce;
         $scope.post = AuPost.getPost();
         $scope.updatePost = function (post) {
-            AuPost.update(post).then(function (response) {
+            AuPost.update(post, $scope.file).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/australia-study-board")
                 }

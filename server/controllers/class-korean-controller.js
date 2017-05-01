@@ -42,22 +42,46 @@ var classKoreanController = {
     },
 
     update: function (req, res, next) {
-        ClassKoreanPost.update(
-            {_id: req.body._id},
-            {
-                $set: {
-                    title: req.body.title,
-                    is_active: req.body.isActive,
-                    content: req.body.content,
-                    sort_content: req.body.sort_content,
-                    tag: req.body.tag
-                }
-            },
-            {upsert: true},
-            function (err, doc) {
-                if (err) next(err);
-                return res.json(doc);
+        if (req.file) {
+            image.resize(req.file, function (err, newPath) {
+                if(err) next(err);
+
+                ClassKoreanPost.update(
+                    {_id: req.body._id},
+                    {
+                        $set: {
+                            title: req.body.title,
+                            is_active: req.body.isActive,
+                            content: req.body.content,
+                            sort_content: req.body.sort_content,
+                            tag: req.body.tag,
+                            image: newPath
+                        }
+                    },
+                    {upsert: true},
+                    function (err, doc) {
+                        if (err) next(err);
+                        return res.json(doc);
+                    });
             });
+        } else {
+            ClassKoreanPost.update(
+                {_id: req.body._id},
+                {
+                    $set: {
+                        title: req.body.title,
+                        is_active: req.body.isActive,
+                        content: req.body.content,
+                        sort_content: req.body.sort_content,
+                        tag: req.body.tag
+                    }
+                },
+                {upsert: true},
+                function (err, doc) {
+                    if (err) next(err);
+                    return res.json(doc);
+                });
+        }
     }
 };
 module.exports = classKoreanController;

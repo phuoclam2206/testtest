@@ -18,7 +18,6 @@ angular.module('canadaStudyAboardController', ['canadaServices', 'paginationUtil
             });
         };
 
-        console.log(Auth.isLoggedId());
         $scope.posts = _.map(postCanadaStudyAboard.docs).map(convertToDate);
 
         $scope.pagination = Pagination.page(postCanadaStudyAboard.limit, postCanadaStudyAboard.limit, postCanadaStudyAboard.total);
@@ -59,7 +58,7 @@ angular.module('canadaStudyAboardController', ['canadaServices', 'paginationUtil
         $scope.tinymceOptions = Tinymce;
         $scope.post = CaPost.getPost();
         $scope.updatePost = function (post) {
-            CaPost.update(post).then(function (response) {
+            CaPost.update(post, $scope.file).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/canada-study-board")
                 }

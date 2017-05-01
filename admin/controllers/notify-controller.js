@@ -58,7 +58,7 @@ angular.module('notifyController', ['notifyServices', 'paginationUtil', 'tinymce
         $scope.tinymceOptions = Tinymce;
         $scope.post = CkPost.getPost();
         $scope.updatePost = function (post) {
-            NotifyPost.update(post).then(function (response) {
+            NotifyPost.update(post, $scope.file).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/notify")
                 }

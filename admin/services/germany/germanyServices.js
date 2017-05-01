@@ -10,14 +10,12 @@ angular.module('germanyServices', [])
             });
             formData.append('image', file);
 
-            console.log(formData);
             return $http.post('/api/dashboard/germany-study-aboard/create', formData, {
                 transformRequest: angular.identity,
                 headers: {
                     'Content-Type': undefined
                 }
             }).then(function (response) {
-                console.log(response);
                 return response;
             });
         };
@@ -35,9 +33,19 @@ angular.module('germanyServices', [])
         };
 
         // GrPost.update
-        grPostFactory.update = function (post) {
-            return $http.post('/api/dashboard/germany-study-aboard/update', post).then(function (response) {
-                console.log(response);
+        grPostFactory.update = function (post, file) {
+            var formData = new FormData();
+            angular.forEach(post, function (value, key) {
+                formData.append(key, value);
+            });
+            formData.append('image', file);
+
+            return $http.post('/api/dashboard/germany-study-aboard/update', formData, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Content-Type': undefined
+                }
+            }).then(function (response) {
                 return response;
             });
         };

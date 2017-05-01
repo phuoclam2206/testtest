@@ -83,7 +83,6 @@ var japanController = {
                     return res.json(doc);
                 });
         }
-
     }
 };
 module.exports = japanController;

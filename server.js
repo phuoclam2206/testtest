@@ -115,65 +115,35 @@ app.post('/api/dashboard/japan-study-aboard/create', authencationController.chec
 app.post('/api/dashboard/japan-study-aboard/delete/:id', authencationController.checkLogin, japanController.delete);
 app.post('/api/dashboard/japan-study-aboard/update', authencationController.checkLogin, image.multer, japanController.update);
 
-// var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, 'public/images/')
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, file.fieldname + '-' + Date.now())
-//     }
-// });
-//
-// var upload = multer({ storage: storage });
-//
-// app.post('/api/dashboard/japan-study-aboard/create',
-//     upload.single('image'), function(req, res) {
-//         // resize image
-//         sharp(req.file.path).resize(300, 200).toFile(req.file.path + "aaa", function(err) {
-//             if (err) {
-//                 console.log(err);
-//                 throw err;
-//             }
-//
-//             fs.unlinkSync(req.file.path);
-//
-//             // output.jpg is a 300 pixels wide and 200 pixels high image
-//             // containing a scaled and cropped version of input.jpg
-//             res.json("aaa");
-//         });
-//         // res.json("aab");
-//     });
-
-
 // Korean
 app.get('/api/dashboard/korean-study-aboard', authencationController.checkLogin, koreanController.fetch);
-app.post('/api/dashboard/korean-study-aboard/create', authencationController.checkLogin, uploadImage.any(), koreanController.create);
+app.post('/api/dashboard/korean-study-aboard/create', authencationController.checkLogin, image.multer, koreanController.create);
 app.post('/api/dashboard/korean-study-aboard/delete/:id', authencationController.checkLogin, koreanController.delete);
-app.post('/api/dashboard/korean-study-aboard/update', authencationController.checkLogin, uploadImage.any(), koreanController.update);
+app.post('/api/dashboard/korean-study-aboard/update', authencationController.checkLogin, image.multer, koreanController.update);
 
 // Germany
 app.get('/api/dashboard/germany-study-aboard', authencationController.checkLogin, germanyController.fetch);
-app.post('/api/dashboard/germany-study-aboard/create', authencationController.checkLogin, uploadImage.any(), germanyController.create);
+app.post('/api/dashboard/germany-study-aboard/create', authencationController.checkLogin, image.multer, germanyController.create);
 app.post('/api/dashboard/germany-study-aboard/delete/:id', authencationController.checkLogin, germanyController.delete);
-app.post('/api/dashboard/germany-study-aboard/update', authencationController.checkLogin, uploadImage.any(), germanyController.update);
+app.post('/api/dashboard/germany-study-aboard/update', authencationController.checkLogin, image.multer, germanyController.update);
 
 // American
 app.get('/api/dashboard/american-study-aboard', authencationController.checkLogin, americanController.fetch);
-app.post('/api/dashboard/american-study-aboard/create', authencationController.checkLogin, uploadImage.any(), americanController.create);
+app.post('/api/dashboard/american-study-aboard/create', authencationController.checkLogin, image.multer, americanController.create);
 app.post('/api/dashboard/american-study-aboard/delete/:id', authencationController.checkLogin, americanController.delete);
-app.post('/api/dashboard/american-study-aboard/update', authencationController.checkLogin, uploadImage.any(), americanController.update);
+app.post('/api/dashboard/american-study-aboard/update', authencationController.checkLogin, image.multer, americanController.update);
 
 // Australia
 app.get('/api/dashboard/australia-study-aboard', authencationController.checkLogin, australiaController.fetch);
-app.post('/api/dashboard/australia-study-aboard/create', authencationController.checkLogin, uploadImage.any(), australiaController.create);
+app.post('/api/dashboard/australia-study-aboard/create', authencationController.checkLogin, image.multer, australiaController.create);
 app.post('/api/dashboard/australia-study-aboard/delete/:id', authencationController.checkLogin, australiaController.delete);
-app.post('/api/dashboard/australia-study-aboard/update', authencationController.checkLogin, uploadImage.any(), australiaController.update);
+app.post('/api/dashboard/australia-study-aboard/update', authencationController.checkLogin, image.multer, australiaController.update);
 
 // Canada
 app.get('/api/dashboard/canada-study-aboard', authencationController.checkLogin, canadaController.fetch);
-app.post('/api/dashboard/canada-study-aboard/create', authencationController.checkLogin, uploadImage.any(), canadaController.create);
+app.post('/api/dashboard/canada-study-aboard/create', authencationController.checkLogin, image.multer, canadaController.create);
 app.post('/api/dashboard/canada-study-aboard/delete/:id', authencationController.checkLogin, canadaController.delete);
-app.post('/api/dashboard/canada-study-aboard/update', authencationController.checkLogin, uploadImage.any(), canadaController.update);
+app.post('/api/dashboard/canada-study-aboard/update', authencationController.checkLogin, image.multer, canadaController.update);
 
 
 // Contact
@@ -186,21 +156,21 @@ app.post('/api/dashboard/contact/email/config', authencationController.checkLogi
 
 // Class Korean
 app.get('/api/dashboard/class/korean', authencationController.checkLogin, classKoreanController.fetch);
-app.post('/api/dashboard/class/korean/create', authencationController.checkLogin, uploadImage.any(), classKoreanController.create);
+app.post('/api/dashboard/class/korean/create', authencationController.checkLogin, image.multer, classKoreanController.create);
 app.post('/api/dashboard/class/korean/delete/:id', authencationController.checkLogin, classKoreanController.delete);
-app.post('/api/dashboard/class/korean/update', authencationController.checkLogin, uploadImage.any(), classKoreanController.update);
+app.post('/api/dashboard/class/korean/update', authencationController.checkLogin, image.multer, classKoreanController.update);
 
 // News
 app.get('/api/dashboard/news', authencationController.checkLogin, newsController.fetch);
-app.post('/api/dashboard/news/create', authencationController.checkLogin, uploadImage.any(), newsController.create);
+app.post('/api/dashboard/news/create', authencationController.checkLogin, image.multer, newsController.create);
 app.post('/api/dashboard/news/delete/:id', authencationController.checkLogin, newsController.delete);
-app.post('/api/dashboard/news/update', authencationController.checkLogin, uploadImage.any(), newsController.update);
+app.post('/api/dashboard/news/update', authencationController.checkLogin, image.multer, newsController.update);
 
 // Notify
 app.get('/api/dashboard/notify', authencationController.checkLogin, notifyController.fetch);
-app.post('/api/dashboard/notify/create', authencationController.checkLogin, uploadImage.any(), notifyController.create);
+app.post('/api/dashboard/notify/create', authencationController.checkLogin, image.multer, notifyController.create);
 app.post('/api/dashboard/notify/delete/:id', authencationController.checkLogin, notifyController.delete);
-app.post('/api/dashboard/notify/update', authencationController.checkLogin, uploadImage.any(), notifyController.update);
+app.post('/api/dashboard/notify/update', authencationController.checkLogin, image.multer, notifyController.update);
 
 
 // Upload Images

@@ -35,9 +35,19 @@ angular.module('notifyServices', [])
         };
 
         // NotifyPost.update
-        notifyPostFactory.update = function (post) {
-            return $http.post('/api/dashboard/notify/update', post).then(function (response) {
-                console.log(response);
+        notifyPostFactory.update = function (post, file) {
+            var formData = new FormData();
+            angular.forEach(post, function (value, key) {
+                formData.append(key, value);
+            });
+            formData.append('image', file);
+
+            return $http.post('/api/dashboard/notify/update', formData, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Content-Type': undefined
+                }
+            }).then(function (response) {
                 return response;
             });
         };

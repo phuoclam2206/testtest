@@ -58,7 +58,7 @@ angular.module('newsController', ['newsServices', 'paginationUtil', 'tinymceOpti
         $scope.tinymceOptions = Tinymce;
         $scope.post = CkPost.getPost();
         $scope.updatePost = function (post) {
-            NewsPost.update(post).then(function (response) {
+            NewsPost.update(post, $scope.file).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/news")
                 }

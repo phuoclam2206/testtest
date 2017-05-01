@@ -58,7 +58,7 @@ angular.module('classKoreanController', ['classKoreanServices', 'paginationUtil'
         $scope.tinymceOptions = Tinymce;
         $scope.post = CkPost.getPost();
         $scope.updatePost = function (post) {
-            CkPost.update(post).then(function (response) {
+            CkPost.update(post, $scope.file).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/class/korean")
                 }

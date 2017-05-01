@@ -18,7 +18,6 @@ angular.module('americanStudyAboardController', ['americanServices', 'pagination
             });
         };
 
-        console.log(Auth.isLoggedId());
         $scope.posts = _.map(postAmericanStudyAboard.docs).map(convertToDate);
 
         $scope.pagination = Pagination.page(postAmericanStudyAboard.limit, postAmericanStudyAboard.limit, postAmericanStudyAboard.total);
@@ -59,7 +58,7 @@ angular.module('americanStudyAboardController', ['americanServices', 'pagination
         $scope.tinymceOptions = Tinymce;
         $scope.post = ArPost.getPost();
         $scope.updatePost = function (post) {
-            ArPost.update(post).then(function (response) {
+            ArPost.update(post, $scope.file).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/american-study-board")
                 }

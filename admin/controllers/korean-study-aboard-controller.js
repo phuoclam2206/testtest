@@ -59,7 +59,7 @@ angular.module('koreanStudyAboardController', ['koreanServices', 'paginationUtil
         $scope.tinymceOptions = Tinymce;
         $scope.post = KrPost.getPost();
         $scope.updatePost = function (post) {
-            KrPost.update(post).then(function (response) {
+            KrPost.update(post, $scope.file).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/korean-study-board")
                 }

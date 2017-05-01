@@ -10,14 +10,12 @@ angular.module('canadaServices', [])
             });
             formData.append('image', file);
 
-            console.log(formData);
             return $http.post('/api/dashboard/canada-study-aboard/create', formData, {
                 transformRequest: angular.identity,
                 headers: {
                     'Content-Type': undefined
                 }
             }).then(function (response) {
-                console.log(response);
                 return response;
             });
         };
@@ -35,9 +33,19 @@ angular.module('canadaServices', [])
         };
 
         // CaPost.update
-        caPostFactory.update = function (post) {
-            return $http.post('/api/dashboard/canada-study-aboard/update', post).then(function (response) {
-                console.log(response);
+        caPostFactory.update = function (post, file) {
+            var formData = new FormData();
+            angular.forEach(post, function (value, key) {
+                formData.append(key, value);
+            });
+            formData.append('image', file);
+
+            return $http.post('/api/dashboard/canada-study-aboard/update', formData, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Content-Type': undefined
+                }
+            }).then(function (response) {
                 return response;
             });
         };

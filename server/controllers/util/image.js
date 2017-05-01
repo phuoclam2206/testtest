@@ -7,7 +7,7 @@ var fs = require('fs');
 var path = require('path');
 
 var image = {};
-var dest = 'public/images/';
+var dest = 'public/images/post/';
 
 var storage =   multer.diskStorage({
     destination: function (req, file, callback) {

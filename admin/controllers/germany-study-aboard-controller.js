@@ -18,7 +18,6 @@ angular.module('germanyStudyAboardController', ['germanyServices', 'paginationUt
             });
         };
 
-        console.log(Auth.isLoggedId());
         $scope.posts = _.map(postGermanyStudyAboard.docs).map(convertToDate);
 
         $scope.pagination = Pagination.page(postGermanyStudyAboard.limit, postGermanyStudyAboard.limit, postGermanyStudyAboard.total);
@@ -59,7 +58,7 @@ angular.module('germanyStudyAboardController', ['germanyServices', 'paginationUt
         $scope.tinymceOptions = Tinymce;
         $scope.post = GrPost.getPost();
         $scope.updatePost = function (post) {
-            GrPost.update(post).then(function (response) {
+            GrPost.update(post, $scope.file).then(function (response) {
                 if (response) {
                     $location.path("/dashboard/germany-study-board")
                 }

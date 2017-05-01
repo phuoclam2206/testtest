@@ -43,22 +43,46 @@ var americanController = {
     },
 
     update: function (req, res, next) {
-        AmericanStudyAboardPost.update(
-            {_id: req.body._id},
-            {
-                $set: {
-                    title: req.body.title,
-                    is_active: req.body.isActive,
-                    content: req.body.content,
-                    sort_content: req.body.sort_content,
-                    tag: req.body.tag
-                }
-            },
-            {upsert: true},
-            function (err, doc) {
-                if (err) next(err);
-                return res.json(doc);
+        if (req.file) {
+            image.resize(req.file, function (err, newPath) {
+                if(err) next(err);
+
+                AmericanStudyAboardPost.update(
+                    {_id: req.body._id},
+                    {
+                        $set: {
+                            title: req.body.title,
+                            is_active: req.body.isActive,
+                            content: req.body.content,
+                            sort_content: req.body.sort_content,
+                            tag: req.body.tag,
+                            image: newPath
+                        }
+                    },
+                    {upsert: true},
+                    function (err, doc) {
+                        if (err) next(err);
+                        return res.json(doc);
+                    });
             });
+        } else {
+            AmericanStudyAboardPost.update(
+                {_id: req.body._id},
+                {
+                    $set: {
+                        title: req.body.title,
+                        is_active: req.body.isActive,
+                        content: req.body.content,
+                        sort_content: req.body.sort_content,
+                        tag: req.body.tag
+                    }
+                },
+                {upsert: true},
+                function (err, doc) {
+                    if (err) next(err);
+                    return res.json(doc);
+                });
+        }
     }
 };
 module.exports = americanController;
