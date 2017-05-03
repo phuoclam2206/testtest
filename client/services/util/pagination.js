@@ -31,4 +31,25 @@ angular.module('paginationUtil', [])
         };
 
         return cutStringFactory;
+    })
+    .factory('MetaService', function () {
+        var title = 'Web App';
+        var metaDescription = '';
+        var metaKeywords = '';
+        var metaImage = '';
+        var metaLink = '';
+        return {
+            set: function(newTitle, newMetaDescription, newKeywords, image, link) {
+                metaKeywords = newKeywords;
+                metaDescription = newMetaDescription;
+                title = newTitle;
+                metaImage = image;
+                metaLink = link;
+            },
+            metaTitle: function(){ return title; },
+            metaDescription: function() { return metaDescription; },
+            metaKeywords: function() { return metaKeywords; },
+            metaImage: function () { return metaImage; },
+            metaLink: function () { return metaLink; }
+        }
     });

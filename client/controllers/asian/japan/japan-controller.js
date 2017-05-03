@@ -56,7 +56,7 @@ angular.module('japanController',['japanServices', 'paginationUtil'])
             });
         };
     })
-    .controller('japanDetailCtr', function ($scope, $stateParams, JpPost, $sce) {
+    .controller('japanDetailCtr', function ($rootScope, $scope, $stateParams, JpPost, $sce, MetaService) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
@@ -66,6 +66,8 @@ angular.module('japanController',['japanServices', 'paginationUtil'])
 
         JpPost.fetchDetail($stateParams.id).then(function (response) {
             $scope.post = convertToDate(response.data);
+            $rootScope.metaservice = MetaService;
+            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'japan/detail/' + $scope.post._id);
         });
 
         JpPost.fetchMostView().then(function (response) {

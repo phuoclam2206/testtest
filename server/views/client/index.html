@@ -1,14 +1,17 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang=""  ng-app="tova">
 
 <!-- Mirrored from devitems.com/tf/techedu-preview/techedu/index.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 25 Oct 2016 02:56:24 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Du học TOVA</title>
+    <title>{{ metaservice.metaTitle() }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:image" content="http://lehoiphaohoadanang.com/wp-content/uploads/ve-xem-phao-hoa-da-nang-B5-800x390.jpg" />
+    <meta property="og:image" content="http://duhoctova.com/{{ metaservice.metaImage() }}" />
+    <meta property="og:url" content="http://duhoctova.com/#!/{{ metaservice.metaLink() }}" />
+
+    <meta property="og:title" content="{{ metaservice.metaTitle() }}" />
     <!-- favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -26,7 +29,7 @@
     ============================================ -->
     <script src="/public/client/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body ng-app="tova">
+<body>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
