@@ -29,7 +29,7 @@ angular.module('classKoreanController',['classKoreanServices', 'paginationUtil']
             });
         };
     })
-    .controller('classKoreanDetailCtr', function ($scope, $stateParams, CkPost, $sce) {
+    .controller('classKoreanDetailCtr', function ($scope, $stateParams, CkPost, $sce, $rootScope, MetaService) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
@@ -39,6 +39,8 @@ angular.module('classKoreanController',['classKoreanServices', 'paginationUtil']
 
         CkPost.fetchDetail($stateParams.id).then(function (response) {
             $scope.post = convertToDate(response.data);
+            $rootScope.metaservice = MetaService;
+            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'korean/detail/' + $scope.post._id);
         });
 
         CkPost.fetchMostView().then(function (response) {

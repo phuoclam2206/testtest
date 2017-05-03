@@ -56,7 +56,7 @@ angular.module('japanController',['japanServices', 'paginationUtil'])
             });
         };
     })
-    .controller('japanDetailCtr', function ($rootScope, $scope, $stateParams, JpPost, $sce, MetaService) {
+    .controller('japanDetailCtr', function ($scope, $stateParams, JpPost, $sce, $rootScope, MetaService) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),

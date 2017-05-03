@@ -60,7 +60,7 @@ angular.module('canadaController',['canadaServices', 'paginationUtil'])
             });
         };
     })
-    .controller('canadaDetailCtr', function ($scope, $stateParams, CaPost, $sce) {
+    .controller('canadaDetailCtr', function ($scope, $stateParams, CaPost, $sce, $rootScope, MetaService) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
@@ -70,6 +70,8 @@ angular.module('canadaController',['canadaServices', 'paginationUtil'])
 
         CaPost.fetchDetail($stateParams.id).then(function (response) {
             $scope.post = convertToDate(response.data);
+            $rootScope.metaservice = MetaService;
+            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'canada/detail/' + $scope.post._id);
         });
 
         CaPost.fetchMostView().then(function (response) {

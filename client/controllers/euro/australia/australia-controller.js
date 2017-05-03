@@ -60,7 +60,7 @@ angular.module('australiaController',['australiaServices', 'paginationUtil'])
             });
         };
     })
-    .controller('australiaDetailCtr', function ($scope, $stateParams, AuPost, $sce) {
+    .controller('australiaDetailCtr', function ($scope, $stateParams, AuPost, $sce, $rootScope, MetaService) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
@@ -70,6 +70,8 @@ angular.module('australiaController',['australiaServices', 'paginationUtil'])
 
         AuPost.fetchDetail($stateParams.id).then(function (response) {
             $scope.post = convertToDate(response.data);
+            $rootScope.metaservice = MetaService;
+            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'australia/detail/' + $scope.post._id);
         });
 
         AuPost.fetchMostView().then(function (response) {

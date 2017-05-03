@@ -29,7 +29,7 @@ angular.module('newsController',['newsServices', 'paginationUtil'])
             });
         };
     })
-    .controller('newsDetailCtr', function ($scope, $stateParams, NewsPost, $sce) {
+    .controller('newsDetailCtr', function ($scope, $stateParams, NewsPost, $sce, $rootScope, MetaService) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
@@ -39,6 +39,8 @@ angular.module('newsController',['newsServices', 'paginationUtil'])
 
         NewsPost.fetchDetail($stateParams.id).then(function (response) {
             $scope.post = convertToDate(response.data);
+            $rootScope.metaservice = MetaService;
+            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'news/detail/' + $scope.post._id);
         });
 
         NewsPost.fetchMostView().then(function (response) {

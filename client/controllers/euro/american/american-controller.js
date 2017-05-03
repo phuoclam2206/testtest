@@ -60,7 +60,7 @@ angular.module('americanController',['americanServices', 'paginationUtil'])
             });
         };
     })
-    .controller('americanDetailCtr', function ($scope, $stateParams, ArPost, $sce) {
+    .controller('americanDetailCtr', function ($scope, $stateParams, ArPost, $sce, $rootScope, MetaService) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
@@ -70,6 +70,8 @@ angular.module('americanController',['americanServices', 'paginationUtil'])
 
         ArPost.fetchDetail($stateParams.id).then(function (response) {
             $scope.post = convertToDate(response.data);
+            $rootScope.metaservice = MetaService;
+            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'american/detail/' + $scope.post._id);
         });
 
         ArPost.fetchMostView().then(function (response) {

@@ -60,7 +60,7 @@ angular.module('germanyController',['germanyServices', 'paginationUtil'])
             });
         };
     })
-    .controller('germanyDetailCtr', function ($scope, $stateParams, GrPost, $sce) {
+    .controller('germanyDetailCtr', function ($scope, $stateParams, GrPost, $sce, $rootScope, MetaService) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
@@ -70,6 +70,8 @@ angular.module('germanyController',['germanyServices', 'paginationUtil'])
 
         GrPost.fetchDetail($stateParams.id).then(function (response) {
             $scope.post = convertToDate(response.data);
+            $rootScope.metaservice = MetaService;
+            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'germany/detail/' + $scope.post._id);
         });
 
         GrPost.fetchMostView().then(function (response) {

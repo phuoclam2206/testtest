@@ -29,7 +29,7 @@ angular.module('notifyController',['notifyServices', 'paginationUtil'])
             });
         };
     })
-    .controller('notifyDetailCtr', function ($scope, $stateParams, NotifyPost, $sce) {
+    .controller('notifyDetailCtr', function ($scope, $stateParams, NotifyPost, $sce, $rootScope, MetaService) {
         var convertToDate = function (data) {
             return _.assign(data, {
                 created_date: new Date(1000 * data.created_date).toDateString(),
@@ -39,6 +39,8 @@ angular.module('notifyController',['notifyServices', 'paginationUtil'])
 
         NotifyPost.fetchDetail($stateParams.id).then(function (response) {
             $scope.post = convertToDate(response.data);
+            $rootScope.metaservice = MetaService;
+            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'notify/detail/' + $scope.post._id);
         });
 
         NotifyPost.fetchMostView().then(function (response) {
