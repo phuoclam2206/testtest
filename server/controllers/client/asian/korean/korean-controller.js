@@ -11,24 +11,27 @@ var clientKoreanController = {
         paging = paginatorUtil.index(req, select, null);
         KoreanStudyAboardPost.paginate(paging.query, paging.option, function (err, result) {
             if (err) next(err);
-            return res.json(result);
+            return res.render('client/asian/japan/index.html', {posts: result.docs});
         });
     },
     fetchDetail: function (req, res, next) {
         KoreanStudyAboardPost.findOne({"_id": req.params.id}, function (err, result) {
             if(err) next(err);
-            KoreanStudyAboardPost.update(
-                {_id: result._id},
-                {
-                    $set: {
-                        view: result.view ?  result.view + 1 : 1
-                    }
-                },
-                {upsert: false},
-                function (err, doc) {
+            var query = KoreanStudyAboardPost.find({}, {title: 1, image: 1, _id: 1, created_date: 1}).sort({"view": -1}).limit(4);
+            query.exec(function(err, mostViews) {
+                if (err) next(err);
+                var condition =  {};
+                if (req.query.tag !== null && req.query.tag != "undefined") {
+                    condition = {"tag" : req.query.tag}
+                }
+                var numRecord = KoreanStudyAboardPost.count();
+                var query = KoreanStudyAboardPost.find(condition, {title: 1, image: 1, _id: 1, created_date: 1}).limit(4).skip(numRecord - 4);
+
+                query.exec(function(err, correlatives) {
                     if (err) next(err);
-                    return res.json(result);
+                    return res.render('client/asian/korean/detail.html', {post: result, correlatives: correlatives, mostViews: mostViews});
                 });
+            });
         });
     },
     fetchMostView: function (req, res, next) {

@@ -4,6 +4,7 @@
 
 var JapanStudyAboardPost = require('../../../../datasets/japanStudyAboardPost');
 var paginatorUtil = require('../../../../controllers/util/paginator');
+var moment = require('moment');
 
 var clientJapanController = {
     fetch: function (req, res) {
@@ -11,7 +12,7 @@ var clientJapanController = {
         paging = paginatorUtil.index(req, select, null);
         JapanStudyAboardPost.paginate(paging.query, paging.option, function (err, result) {
             if (err) next(err);
-            return res.json(result);
+            return res.render('client/asian/japan/index.html', {posts: result.docs});
         });
     },
     fetchDetail: function (req, res, next) {
@@ -27,7 +28,21 @@ var clientJapanController = {
                 {upsert: false},
                 function (err, doc) {
                     if (err) next(err);
-                    return res.json(result);
+                    var query = JapanStudyAboardPost.find({}, {title: 1, image: 1, _id: 1, created_date: 1}).sort({"view": -1}).limit(4);
+                    query.exec(function(err, mostViews) {
+                        if (err) next(err);
+                        var condition =  {};
+                        if (req.query.tag !== null && req.query.tag != "undefined") {
+                            condition = {"tag" : req.query.tag}
+                        }
+                        var numRecord = JapanStudyAboardPost.count();
+                        var query = JapanStudyAboardPost.find(condition, {title: 1, image: 1, _id: 1, created_date: 1}).limit(4).skip(numRecord - 4);
+
+                        query.exec(function(err, correlatives) {
+                            if (err) next(err);
+                            return res.render('client/asian/japan/detail.html', {post: result, correlatives: correlatives, mostViews: mostViews});
+                        });
+                    });
                 });
         });
     },

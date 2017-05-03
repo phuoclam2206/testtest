@@ -1,0 +1,115 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<!-- Mirrored from devitems.com/tf/techedu-preview/techedu/class-grid.html by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 25 Oct 2016 02:58:11 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Class Grid || TechEdu</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon
+    ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
+    <!-- Google Fonts
+    ============================================ -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+
+    <!-- Style CSS
+    ============================================ -->
+    <link rel="stylesheet" href="/public/client/style.css">
+
+    <!-- Modernizr JS
+    ============================================ -->
+    <script src="/public/client/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+
+<%- include('../../header') %>
+
+<!--Activity Area Start-->
+<div class="activity-area" style="padding: 0px !important;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-4 activity">
+                <div class="single-activity">
+                    <a href="/japan/tag?tag=visa">
+                        <div class="single-activity-icon">
+                            <i class="fa fa-cc-visa"></i>
+                        </div>
+                    </a>
+                    <h4>Thủ tục xin Visa</h4>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 activity">
+                <div class="single-activity">
+                    <a href="/japan/tag?tag=education">
+                        <div class="single-activity-icon">
+                            <i class="fa fa-graduation-cap"></i>
+                        </div>
+                    </a>
+                    <h4>Hệ thống giáo dục</h4>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 activity">
+                <div class="single-activity">
+                    <a href="/japan/tag?tag=school">
+                        <div class="single-activity-icon">
+                            <i class="fa fa-fort-awesome"></i>
+                        </div>
+                    </a>
+                    <h4>Các trường tại Nhật Bản</h4>
+                </div>
+            </div>
+            <div class="col-md-3 hidden-sm activity">
+                <div class="single-activity">
+                    <a href="/japan/tag?tag=study">
+                        <div class="single-activity-icon">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </a>
+                    <h4>Sống và học tập tại Nhật Bản</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Activity Area-->
+
+<!--Class Grid Area Start-->
+<div class="class-grid-area section-padding">
+    <div class="container">
+        <div class="row">
+            <% if(posts) { posts.forEach(function(post) { %>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="single-class">
+                    <div class="single-class-image">
+                        <a href="/japan/detail/<%= post._id %>">
+                            <img src="<%= post.image %>" alt="">
+                            <span class="class-date"><%= moment(new Date(1000 * post.created_date)).format('DD/MM/YYYY') %></span>
+                        </a>
+                    </div>
+                    <div class="single-class-text">
+                        <div class="class-des">
+                            <h4><a href="/japan/detail/<%= post._id %>"><%= post.title %></a></h4>
+                            <p><%= post.sort_content %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% })} %>
+        </div>
+        <pagination></pagination>
+    </div>
+</div>
+<!--End of Class Grid Area-->
+
+
+<%- include('../../footer') %>
+
+</body>
+
+</html>

@@ -37,6 +37,8 @@ var clientClassKoreanController = require("./server/controllers/client/class/kor
 var clientNewsController = require("./server/controllers/client/news/news-controller");
 var clientNotifyController = require("./server/controllers/client/notify/notify-controller");
 
+global.moment = require('moment');
+global.configAll = require('./server/config/config');
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -184,10 +186,10 @@ app.get('/', function (req,res) {
 });
 
 // Client Japan
-app.get('/api/asian/japan', clientJapanController.fetch);
-app.get('/api/asian/japan/detail/:id', clientJapanController.fetchDetail);
-app.get('/api/asian/japan/fetch_most_view', clientJapanController.fetchMostView);
-app.get('/api/asian/japan/fetch_correlative', clientJapanController.fetchCorrelative);
+// app.get('/api/asian/japan', clientJapanController.fetch);
+// app.get('/api/asian/japan/detail/:id', clientJapanController.fetchDetail);
+// app.get('/api/asian/japan/fetch_most_view', clientJapanController.fetchMostView);
+// app.get('/api/asian/japan/fetch_correlative', clientJapanController.fetchCorrelative);
 
 // Client Korean
 app.get('/api/asian/korean', clientKoreanController.fetch);
@@ -236,6 +238,10 @@ app.get('/api/news/fetch_most_view', clientNewsController.fetchMostView);
 app.get('/api/notify', clientNotifyController.fetch);
 app.get('/api/notify/detail/:id', clientNotifyController.fetchDetail);
 app.get('/api/notify/fetch_most_view', clientNotifyController.fetchMostView);
+
+
+require('./server/routes/about')(app);
+require('./server/routes/asian/japan/japan-route')(app);
 
 app.listen('3000', function () {
    console.log("server start ");

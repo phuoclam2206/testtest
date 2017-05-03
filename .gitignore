@@ -4,3 +4,4 @@
 public/images/
 bower_components/
 npm-debug.log
+/node_modules/
