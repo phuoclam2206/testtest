@@ -4,7 +4,7 @@
 angular.module("appRoutes", ['ui.router'])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/');
-	$locationProvider.html5Mode(true).hashPrefix('!');
+	    // $locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider
             //  Route home
             .state('home', {
