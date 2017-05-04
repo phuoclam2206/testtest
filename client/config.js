@@ -2,8 +2,9 @@
  * Created by phuoclam on 31/12/2016.
  */
 angular.module("appRoutes", ['ui.router'])
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/');
+	$locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider
             //  Route home
             .state('home', {
