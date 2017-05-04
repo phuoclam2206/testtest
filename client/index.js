@@ -29,4 +29,9 @@ angular.module('tova', [
     'newsServices',
     'notifyServices'
     ])
-    .constant('_', window._);
+    .constant('_', window._)
+    .run([
+        '$rootScope', function ($rootScope) {
+            $rootScope.facebookAppId = '1297662293648303'; // set your facebook app id here
+        }
+    ]);
