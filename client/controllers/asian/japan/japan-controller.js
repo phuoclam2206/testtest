@@ -67,13 +67,13 @@ angular.module('japanController',['japanServices', 'paginationUtil'])
         JpPost.fetchDetail($stateParams.id).then(function (response) {
             $scope.post = convertToDate(response.data);
             $scope.myModel = {
-                Url: 'http://jasonwatmore.com/post/2014/08/01/AngularJS-directives-for-social-sharing-buttons-Facebook-Like-GooglePlus-Twitter-and-Pinterest.aspx',
+                Url: 'http://duhoctova.com/#!/japan/detail/5901a80039d2b52d6883003f',
                 Name: "AngularJS directives for social sharing buttons - Facebook, Google+, Twitter and Pinterest | Jason Watmore's Blog",
-                ImageUrl: 'http://www.jasonwatmore.com/pics/jason.jpg'
+                ImageUrl: 'http://duhoctova.com/public/images/1489800718719-a38b4e71_601e_486c_a1b7_e7fb039ded39.jpg'
             };
 
             $rootScope.metaservice = MetaService;
-            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'japan/detail/' + $scope.post._id);
+            $rootScope.metaservice.set($scope.post.title, "desc","blah blah", $scope.post.image, 'japan/detail/5901a80039d2b52d6883003f');
         });
 
         JpPost.fetchMostView().then(function (response) {
