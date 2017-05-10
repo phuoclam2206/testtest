@@ -3,18 +3,23 @@
  */
 
 var KoreanStudyAboardPost = require('../../../../datasets/koreanStudyAboardPost');
-var paginatorUtil = require('../../../../controllers/util/paginator');
+var paginatorUtil = require(__base + 'controllers/util/paginator');
+var KoreanModel = require(__base + 'models/asian/korean/korean-model')
 
 var clientKoreanController = {
     fetch: function (req, res) {
         var select = '_id title created_date image sort_content';
         paging = paginatorUtil.index(req, select, null);
-        KoreanStudyAboardPost.paginate(paging.query, paging.option, function (err, result) {
-            if (err) next(err);
-            return res.render('client/asian/japan/index.html', {posts: result.docs});
-        });
+        try {
+            KoreanModel.fetch(paging).then(function(result) {
+                return res.render('client/asian/korean/index.html', {posts: result.docs});
+            });
+        } catch(err) {
+            res.redirect('/');
+        }
     },
     fetchDetail: function (req, res, next) {
+        
         KoreanStudyAboardPost.findOne({"_id": req.params.id}, function (err, result) {
             if(err) next(err);
             var query = KoreanStudyAboardPost.find({}, {title: 1, image: 1, _id: 1, created_date: 1}).sort({"view": -1}).limit(4);

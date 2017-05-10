@@ -79,34 +79,8 @@
 <!--End of Activity Area-->
 
 <!--Class Grid Area Start-->
-<div class="class-grid-area section-padding">
-    <div class="container">
-        <div class="row">
-            <% if(posts) { posts.forEach(function(post) { %>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="single-class">
-                    <div class="single-class-image">
-                        <a href="/japan/detail/<%= post._id %>">
-                            <img src="<%= post.image %>" alt="">
-                            <span class="class-date"><%= moment(new Date(1000 * post.created_date)).format('DD/MM/YYYY') %></span>
-                        </a>
-                    </div>
-                    <div class="single-class-text">
-                        <div class="class-des">
-                            <h4><a href="/japan/detail/<%= post._id %>"><%= post.title %></a></h4>
-                            <p><%= post.sort_content %></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <% })} %>
-        </div>
-        <pagination></pagination>
-    </div>
-</div>
+<%- include('../../util/index_post_one.html') %>
 <!--End of Class Grid Area-->
-
 
 <%- include('../../footer') %>
 
