@@ -26,18 +26,8 @@ var classKoreanController = require("./server/controllers/class-korean-controlle
 var newsController = require("./server/controllers/news-controller");
 var notifyController = require("./server/controllers/notify-controller");
 
-var clientJapanController = require("./server/controllers/client/asian/japan/japan-controller");
-var clientKoreanController = require("./server/controllers/client/asian/korean/korean-controller");
-var clientGermanyController = require("./server/controllers/client/euro/germany/germany-controller");
-var clientAmericanController = require("./server/controllers/client/euro/american/american-controller");
-var clientAustraliaController = require("./server/controllers/client/euro/australia/australia-controller");
-var clientCanadaController = require("./server/controllers/client/euro/canada/canada-controller");
-var clientContactController = require("./server/controllers/client/contact/contact-controller");
-var clientClassKoreanController = require("./server/controllers/client/class/korean/korean-controller");
-var clientNewsController = require("./server/controllers/client/news/news-controller");
-var clientNotifyController = require("./server/controllers/client/notify/notify-controller");
 
-global.__base = __dirname + '/';
+global.__base = __dirname + '/server/';
 global.moment = require('moment');
 global.configAll = require('./server/config/config');
 
@@ -244,12 +234,12 @@ app.get('/', function (req,res) {
 require('./server/routes/about/about-route')(app);
 require('./server/routes/asian/japan/japan-route')(app);
 require('./server/routes/asian/korean/korean-route')(app);
-require('./server/routes/asian/american/american-route')(app);
-require('./server/routes/asian/australia/australia-route')(app);
-require('./server/routes/asian/canada/canada-route')(app);
-require('./server/routes/asian/germany/germany-route')(app);
-require('./server/routes/asian/news/news-route')(app);
-require('./server/routes/asian/notify/notify-route')(app);
+require('./server/routes/euro/american/american-route')(app);
+require('./server/routes/euro/australia/australia-route')(app);
+require('./server/routes/euro/canada/canada-route')(app);
+require('./server/routes/euro/germany/germany-route')(app);
+require('./server/routes/news/news-route')(app);
+require('./server/routes/notify/notify-route')(app);
 
 app.listen('3000', function () {
    console.log("server start ");

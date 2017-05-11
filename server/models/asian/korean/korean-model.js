@@ -3,7 +3,7 @@
  */
 var KoreanStudyAboardPost = require(__base + 'datasets/koreanStudyAboardPost');
 
-module.exports = function() {
+module.exports = {
 
 	fetch: function(paging) {
         return new Promise(function(resolve, reject) {
@@ -14,14 +14,21 @@ module.exports = function() {
         });
 	},
 
-	fetchRandom: function() {
+	fetchRandom: function(condition) {
 		return new Promise(function(resolve, reject) {
-	        KoreanStudyAboardPost.aggregate({
-	        	{ $sample: { size: 1 } }
-	        }, function(err, result) {
-	        	if (err) reject(err);
-	            resolve(result);
-	        })
+            KoreanStudyAboardPost.count(condition, function (err, count) {
+                if (err) reject(err);
+                var skip = 4;
+                skip = count > skip ? count - skip : 0;
+                KoreanStudyAboardPost
+                    .find(condition, {title: 1, image: 1, _id: 1, created_date: 1})
+                    .limit(4)
+                    .skip(skip)
+                    .exec(function(err, result) {
+                        if (err) reject(err);
+                        resolve(result);
+                    });
+            });
         });
 	},
 
@@ -42,5 +49,6 @@ module.exports = function() {
 	            resolve(result);
 	        });
         });
-	}
+	},
+
 };
